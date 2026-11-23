@@ -1,0 +1,2113 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco-Loyiha | Ekologiya va Chiqindilarni Qayta Ishlash Tashabbusi</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        eco: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        },
+                        earth: {
+                            50: '#faf8f5',
+                            100: '#f3efe6',
+                            200: '#e5dccb',
+                            800: '#4a4238',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Maxsus animatsiyalar va silliq o'tishlar */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        /* Range slider stilizatsiyasi */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: transparent;
+            cursor: pointer;
+        }
+        input[type="range"]::-webkit-slider-runnable-track {
+            height: 8px;
+            border-radius: 999px;
+            background: #d1fae5;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #059669;
+            margin-top: -6px;
+            box-shadow: 0 2px 6px rgba(5, 150, 105, 0.4);
+            transition: transform 0.15s ease;
+        }
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
+        /* Sahifalar almashinuvi animatsiyasi */
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .page-view {
+            display: none;
+        }
+        .page-view.active {
+            display: block;
+            animation: fadeSlideUp 0.35s ease-out forwards;
+        }
+        /* Tepagi bo'limlar qatori uchun ixcham scrollbar yashirish */
+        .top-sections-scroll::-webkit-scrollbar {
+            height: 4px;
+        }
+        .top-sections-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .top-sections-scroll::-webkit-scrollbar-thumb {
+            background: #bbf7d0;
+            border-radius: 999px;
+        }
+    </style>
+</head>
+<body class="bg-earth-50 text-slate-800 font-sans antialiased selection:bg-eco-600 selection:text-white min-h-screen flex flex-col">
+
+    <!-- ==================== NAVIGATSIYA PANELI ==================== -->
+    <header class="sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-eco-100 shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logotip -->
+                <button type="button" data-page="home" data-top-key="home" class="nav-trigger flex items-center space-x-3 group text-left">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-eco-500 to-eco-700 flex items-center justify-center text-white shadow-lg shadow-eco-500/30 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-leaf text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold tracking-tight text-eco-900 block leading-none">ECO<span class="text-eco-600">LOYIHA</span></span>
+                        <span class="text-[11px] font-medium text-slate-500 tracking-wider uppercase">Yashil kelajak tashabbusi</span>
+                    </div>
+                </button>
+
+                <!-- Desktop Menyu (Sahifalar) -->
+                <nav class="hidden lg:flex items-center space-x-1 bg-slate-100/80 p-1.5 rounded-2xl border border-slate-200/60">
+                    <button type="button" data-page="home" data-top-key="home" class="nav-trigger nav-btn active px-3.5 py-2 rounded-xl text-sm font-semibold bg-white text-eco-700 shadow-sm transition-all">
+                        <i class="fa-solid fa-house mr-1.5 text-xs"></i> Bosh sahifa
+                    </button>
+                    <button type="button" data-page="directions" data-subtab-target="tab-4dir" data-top-key="directions" class="nav-trigger nav-btn px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-eco-700 transition-all">
+                        <i class="fa-solid fa-compass mr-1.5 text-xs"></i> Yo‘nalishlar
+                    </button>
+                    <button type="button" data-page="calculator" data-top-key="calculator" class="nav-trigger nav-btn px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-eco-700 transition-all">
+                        <i class="fa-solid fa-calculator mr-1.5 text-xs"></i> Yashil Ball
+                    </button>
+                    <button type="button" data-page="points" data-top-key="points" class="nav-trigger nav-btn px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-eco-700 transition-all">
+                        <i class="fa-solid fa-location-dot mr-1.5 text-xs"></i> Qabul punktlari
+                    </button>
+                    <button type="button" data-page="volunteers" data-top-key="volunteers" class="nav-trigger nav-btn px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-eco-700 transition-all">
+                        <i class="fa-solid fa-people-group mr-1.5 text-xs"></i> Volontyorlar
+                    </button>
+                    <button type="button" data-page="contact" data-top-key="contact" class="nav-trigger nav-btn px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-eco-700 transition-all">
+                        <i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Bog‘lanish
+                    </button>
+                </nav>
+
+                <!-- CTA tugmasi va Mobil menyu tugmasi -->
+                <div class="flex items-center space-x-3">
+                    <button type="button" data-page="contact" data-preset="ecobox" data-top-key="contact" class="nav-trigger hidden sm:inline-flex items-center px-5 py-2.5 rounded-xl bg-eco-600 hover:bg-eco-700 text-white text-sm font-semibold shadow-md shadow-eco-600/20 transition-all hover:-translate-y-0.5">
+                        <i class="fa-solid fa-box-open mr-2"></i> Eco-boks buyurtma
+                    </button>
+                    <button id="mobile-menu-btn" aria-label="Menyuni ochish" class="lg:hidden p-2.5 rounded-xl text-slate-600 hover:bg-eco-50 hover:text-eco-700 transition-colors">
+                        <i class="fa-solid fa-bars text-xl" id="mobile-menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEPADAGI BO'LIMLAR QATORI (TOP SECTIONS BAR) -->
+        <div class="bg-eco-50/90 border-t border-eco-100/90">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div id="top-sections-bar" class="top-sections-scroll flex items-center gap-2 py-2 overflow-x-auto whitespace-nowrap" role="navigation" aria-label="Tepadagi bo‘limlar">
+                    <span class="hidden md:inline-flex items-center text-[11px] font-bold uppercase tracking-wider text-eco-800/70 pr-2 border-r border-eco-200 shrink-0">
+                        <i class="fa-solid fa-layer-group mr-1.5 text-eco-600"></i> Bo‘limlar:
+                    </span>
+                    <button type="button" data-page="home" data-top-key="home" class="top-sec-btn active inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-eco-600 text-white shadow-sm transition-all shrink-0">
+                        <i class="fa-solid fa-house"></i> Asosiy
+                    </button>
+                    <button type="button" data-page="directions" data-subtab-target="tab-4dir" data-top-key="directions" class="top-sec-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-700 border border-eco-200/80 hover:border-eco-400 hover:text-eco-700 transition-all shrink-0">
+                        <i class="fa-solid fa-compass text-eco-600"></i> Yo‘nalishlar
+                    </button>
+                    <button type="button" data-page="directions" data-subtab-target="tab-stages" data-top-key="stages" class="top-sec-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-700 border border-eco-200/80 hover:border-eco-400 hover:text-eco-700 transition-all shrink-0">
+                        <i class="fa-solid fa-timeline text-amber-600"></i> Bosqichlar &amp; Qoidalar
+                    </button>
+                    <button type="button" data-page="calculator" data-top-key="calculator" class="top-sec-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-700 border border-eco-200/80 hover:border-eco-400 hover:text-eco-700 transition-all shrink-0">
+                        <i class="fa-solid fa-calculator text-emerald-600"></i> Yashil Ball
+                    </button>
+                    <button type="button" data-page="points" data-top-key="points" class="top-sec-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-700 border border-eco-200/80 hover:border-eco-400 hover:text-eco-700 transition-all shrink-0">
+                        <i class="fa-solid fa-location-dot text-sky-600"></i> Qabul punktlari
+                    </button>
+                    <button type="button" data-page="volunteers" data-top-key="volunteers" class="top-sec-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-700 border border-eco-200/80 hover:border-eco-400 hover:text-eco-700 transition-all shrink-0">
+                        <i class="fa-solid fa-people-group text-teal-600"></i> Volontyorlar
+                    </button>
+                    <button type="button" data-page="contact" data-top-key="contact" class="top-sec-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-700 border border-eco-200/80 hover:border-eco-400 hover:text-eco-700 transition-all shrink-0">
+                        <i class="fa-solid fa-paper-plane text-purple-600"></i> Ariza &amp; Bog‘lanish
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobil Menyu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-eco-100 px-4 pt-2 pb-6 space-y-1.5 shadow-xl">
+            <button type="button" data-page="home" class="nav-trigger mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-base font-semibold bg-eco-50 text-eco-700">
+                <i class="fa-solid fa-house w-6"></i> Bosh sahifa
+            </button>
+            <button type="button" data-page="directions" class="nav-trigger mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:bg-eco-50">
+                <i class="fa-solid fa-compass w-6"></i> Yo‘nalishlar va Bosqichlar
+            </button>
+            <button type="button" data-page="calculator" class="nav-trigger mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:bg-eco-50">
+                <i class="fa-solid fa-calculator w-6"></i> Yashil Ball kalkulyatori
+            </button>
+            <button type="button" data-page="points" class="nav-trigger mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:bg-eco-50">
+                <i class="fa-solid fa-location-dot w-6"></i> Qabul punktlari
+            </button>
+            <button type="button" data-page="volunteers" class="nav-trigger mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:bg-eco-50">
+                <i class="fa-solid fa-people-group w-6"></i> Volontyorlar va Eco-Aksiya
+            </button>
+            <button type="button" data-page="contact" class="nav-trigger mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:bg-eco-50">
+                <i class="fa-solid fa-paper-plane w-6"></i> Bog‘lanish va Ariza
+            </button>
+        </div>
+    </header>
+
+    <!-- ASOSIY KONTENT (SAHIFALAR KONTEYNERI) -->
+    <main class="flex-grow">
+
+        <!-- ===================================================================== -->
+        <!-- 1-SAHIFA: BOSH SAHIFA (HOME)                                          -->
+        <!-- ===================================================================== -->
+        <section id="page-home" class="page-view active">
+            <!-- Hero Qismi -->
+            <div class="relative py-12 lg:py-20 overflow-hidden bg-gradient-to-b from-eco-50 via-white to-earth-50">
+                <div class="absolute top-10 right-0 -mr-20 w-96 h-96 rounded-full bg-eco-200/40 blur-3xl pointer-events-none"></div>
+                <div class="absolute bottom-0 left-0 -ml-20 w-80 h-80 rounded-full bg-amber-200/30 blur-3xl pointer-events-none"></div>
+
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <!-- Chap ustun -->
+                        <div class="lg:col-span-7 text-center lg:text-left">
+                            <button type="button" data-page="points" class="nav-trigger inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-eco-100/80 hover:bg-eco-200/80 border border-eco-200 text-eco-800 text-xs sm:text-sm font-semibold mb-6 transition-colors cursor-pointer">
+                                <span class="w-2 h-2 rounded-full bg-eco-600 animate-ping"></span>
+                                <span>Farg‘ona viloyati, Yaypan va tumanlar bo‘ylab yashil tashabbus <i class="fa-solid fa-arrow-right ml-1 text-xs"></i></span>
+                            </button>
+                            
+                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15] mb-6">
+                                Tabiatni asrash — <span class="text-transparent bg-clip-text bg-gradient-to-r from-eco-600 to-teal-600">kelajakni asrash!</span>
+                            </h1>
+                            
+                            <p class="text-base sm:text-lg text-slate-600 leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
+                                Maishiy va sanoat chiqindilarini saralash madaniyatini birgalikda shakllantiramiz. Eco-bokslar tizimi, qayta ishlash sexlari va <strong>"Yashil ball"</strong> dasturi orqali atrof-muhitni toza saqlang va daromad oling.
+                            </p>
+
+                            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                                <button type="button" data-page="calculator" class="nav-trigger w-full sm:w-auto px-8 py-4 rounded-2xl bg-eco-600 hover:bg-eco-700 text-white font-bold text-base shadow-xl shadow-eco-600/25 transition-all hover:-translate-y-0.5 flex items-center justify-center">
+                                    <i class="fa-solid fa-calculator mr-2.5 text-lg"></i> Yashil Ball hisoblash
+                                </button>
+                                <button type="button" data-page="contact" data-preset="ecobox" class="nav-trigger w-full sm:w-auto px-8 py-4 rounded-2xl bg-white hover:bg-eco-50 text-eco-800 border-2 border-eco-200 font-bold text-base transition-all flex items-center justify-center">
+                                    <i class="fa-solid fa-box-open mr-2.5 text-eco-600"></i> Eco-boks buyurtma qilish
+                                </button>
+                            </div>
+
+                            <!-- Tezkor statistika (bosiladigan kartalar) -->
+                            <div class="grid grid-cols-3 gap-3 sm:gap-6 mt-12 pt-8 border-t border-slate-200/80">
+                                <button type="button" data-page="direction-detail" data-dir="recycling" class="dir-trigger text-left p-3 rounded-2xl hover:bg-white hover:shadow-sm transition-all group">
+                                    <div class="text-2xl sm:text-3xl font-extrabold text-eco-700 group-hover:text-eco-600">120+ t</div>
+                                    <div class="text-xs sm:text-sm text-slate-500 font-medium mt-1">Qayta ishlangan xomashyo <i class="fa-solid fa-chevron-right text-[10px] ml-0.5"></i></div>
+                                </button>
+                                <button type="button" data-page="points" class="nav-trigger text-left p-3 rounded-2xl hover:bg-white hover:shadow-sm transition-all group">
+                                    <div class="text-2xl sm:text-3xl font-extrabold text-eco-700 group-hover:text-eco-600">340 ta</div>
+                                    <div class="text-xs sm:text-sm text-slate-500 font-medium mt-1">O‘rnatilgan Eco-bokslar <i class="fa-solid fa-chevron-right text-[10px] ml-0.5"></i></div>
+                                </button>
+                                <button type="button" data-page="volunteers" class="nav-trigger text-left p-3 rounded-2xl hover:bg-white hover:shadow-sm transition-all group">
+                                    <div class="text-2xl sm:text-3xl font-extrabold text-eco-700 group-hover:text-eco-600">4 800+</div>
+                                    <div class="text-xs sm:text-sm text-slate-500 font-medium mt-1">Faol volontyorlar <i class="fa-solid fa-chevron-right text-[10px] ml-0.5"></i></div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- O'ng ustun: Ekotizim kartasi -->
+                        <div class="lg:col-span-5">
+                            <div class="relative mx-auto max-w-md">
+                                <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-2xl shadow-eco-900/10 border border-eco-100 relative z-10">
+                                    <div class="flex items-center justify-between mb-6">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-12 h-12 rounded-2xl bg-eco-100 text-eco-700 flex items-center justify-center text-2xl">
+                                                <i class="fa-solid fa-earth-asia"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="font-bold text-slate-900">Aylanma Ekotizim</h3>
+                                                <p class="text-xs text-slate-500">Har bir bosqich ustiga bosing</p>
+                                            </div>
+                                        </div>
+                                        <button type="button" data-page="directions" class="nav-trigger px-3 py-1 rounded-full bg-eco-100 hover:bg-eco-200 text-eco-700 text-xs font-bold transition-colors">Barchasi</button>
+                                    </div>
+
+                                    <div class="space-y-3.5">
+                                        <button type="button" data-page="direction-detail" data-dir="ecobox" class="dir-trigger w-full text-left flex items-center p-3.5 rounded-2xl bg-amber-50/80 hover:bg-amber-100/80 border border-amber-200/60 transition-all group">
+                                            <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold mr-3.5 shrink-0">
+                                                <i class="fa-solid fa-bottle-water"></i>
+                                            </div>
+                                            <div class="flex-1">
+                                                <div class="text-sm font-bold text-slate-800 group-hover:text-amber-900">1. Alohida yig‘ish (Eco-bokslar)</div>
+                                                <div class="text-xs text-slate-500">Mahalla va maktablarda saralash</div>
+                                            </div>
+                                            <span class="text-xs font-bold text-amber-700 bg-amber-100 px-2.5 py-1 rounded-lg">+Ball <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                                        </button>
+
+                                        <button type="button" data-page="direction-detail" data-dir="recycling" class="dir-trigger w-full text-left flex items-center p-3.5 rounded-2xl bg-blue-50/80 hover:bg-blue-100/80 border border-blue-200/60 transition-all group">
+                                            <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold mr-3.5 shrink-0">
+                                                <i class="fa-solid fa-industry"></i>
+                                            </div>
+                                            <div class="flex-1">
+                                                <div class="text-sm font-bold text-slate-800 group-hover:text-blue-900">2. Qayta ishlash sexi</div>
+                                                <div class="text-xs text-slate-500">PET fleks va presslangan makulatura</div>
+                                            </div>
+                                            <span class="text-xs font-bold text-blue-700 bg-blue-100 px-2.5 py-1 rounded-lg">Xomashyo <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                                        </button>
+
+                                        <button type="button" data-page="direction-detail" data-dir="compost" class="dir-trigger w-full text-left flex items-center p-3.5 rounded-2xl bg-emerald-50/80 hover:bg-emerald-100/80 border border-emerald-200/60 transition-all group">
+                                            <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold mr-3.5 shrink-0">
+                                                <i class="fa-solid fa-seedling"></i>
+                                            </div>
+                                            <div class="flex-1">
+                                                <div class="text-sm font-bold text-slate-800 group-hover:text-emerald-900">3. Organik biogumus</div>
+                                                <div class="text-xs text-slate-500">Issiqxonalar uchun tabiiy o‘g‘it</div>
+                                            </div>
+                                            <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-lg">O‘g‘it <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <button type="button" data-page="calculator" class="nav-trigger hidden sm:flex items-center space-x-3 bg-eco-900 hover:bg-eco-800 text-white px-5 py-3.5 rounded-2xl shadow-xl absolute -bottom-5 -left-5 z-20 animate-float transition-colors text-left">
+                                    <div class="w-9 h-9 rounded-xl bg-eco-500 flex items-center justify-center">
+                                        <i class="fa-solid fa-award text-white"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-eco-200">Yashil ball dasturi</div>
+                                        <div class="text-sm font-bold">1 kg plastik = 50 ball <i class="fa-solid fa-arrow-right ml-1 text-xs"></i></div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bo'limlarga tezkor o'tish kartalari -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900">Sayt bo‘limlari bo‘ylab tezkor o‘tish</h2>
+                    <span class="text-xs font-semibold text-eco-700 bg-eco-100 px-3 py-1 rounded-full">5 ta asosiy bo‘lim</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                    <button type="button" data-page="directions" class="nav-trigger text-left p-5 rounded-3xl bg-white border border-slate-200/80 hover:border-eco-400 hover:shadow-lg transition-all group">
+                        <div class="w-11 h-11 rounded-2xl bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white flex items-center justify-center text-lg mb-3.5 transition-colors">
+                            <i class="fa-solid fa-compass"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-sm mb-1 group-hover:text-eco-700">Yo‘nalishlar</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-3">4 asosiy yo‘nalish va saralash qoidalari.</p>
+                        <span class="text-xs font-bold text-eco-600 inline-flex items-center">Batafsil <i class="fa-solid fa-arrow-right ml-1.5"></i></span>
+                    </button>
+
+                    <button type="button" data-page="calculator" class="nav-trigger text-left p-5 rounded-3xl bg-white border border-slate-200/80 hover:border-eco-400 hover:shadow-lg transition-all group">
+                        <div class="w-11 h-11 rounded-2xl bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white flex items-center justify-center text-lg mb-3.5 transition-colors">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-sm mb-1 group-hover:text-eco-700">Yashil Ball</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-3">Bonuslarni hisoblang va sovg‘aga almashtiring.</p>
+                        <span class="text-xs font-bold text-eco-600 inline-flex items-center">Hisoblash <i class="fa-solid fa-arrow-right ml-1.5"></i></span>
+                    </button>
+
+                    <button type="button" data-page="points" class="nav-trigger text-left p-5 rounded-3xl bg-white border border-slate-200/80 hover:border-eco-400 hover:shadow-lg transition-all group">
+                        <div class="w-11 h-11 rounded-2xl bg-amber-50 text-amber-600 group-hover:bg-amber-500 group-hover:text-white flex items-center justify-center text-lg mb-3.5 transition-colors">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-sm mb-1 group-hover:text-eco-700">Qabul Punktlari</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-3">Yaypan, Farg‘ona va Qo‘qondagi manzillar.</p>
+                        <span class="text-xs font-bold text-eco-600 inline-flex items-center">Manzillar <i class="fa-solid fa-arrow-right ml-1.5"></i></span>
+                    </button>
+
+                    <button type="button" data-page="volunteers" class="nav-trigger text-left p-5 rounded-3xl bg-white border border-slate-200/80 hover:border-eco-400 hover:shadow-lg transition-all group">
+                        <div class="w-11 h-11 rounded-2xl bg-teal-50 text-teal-600 group-hover:bg-teal-600 group-hover:text-white flex items-center justify-center text-lg mb-3.5 transition-colors">
+                            <i class="fa-solid fa-people-group"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-sm mb-1 group-hover:text-eco-700">Volontyorlar</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-3">Eco-aksiyalar, reyting va jamoaga qo‘shilish.</p>
+                        <span class="text-xs font-bold text-eco-600 inline-flex items-center">Qo‘shilish <i class="fa-solid fa-arrow-right ml-1.5"></i></span>
+                    </button>
+
+                    <button type="button" data-page="contact" class="nav-trigger text-left p-5 rounded-3xl bg-white border border-slate-200/80 hover:border-eco-400 hover:shadow-lg transition-all group">
+                        <div class="w-11 h-11 rounded-2xl bg-purple-50 text-purple-600 group-hover:bg-purple-600 group-hover:text-white flex items-center justify-center text-lg mb-3.5 transition-colors">
+                            <i class="fa-solid fa-hand-holding-heart"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-sm mb-1 group-hover:text-eco-700">Bog‘lanish</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-3">Eco-boks buyurtma qilish va hamkorlik.</p>
+                        <span class="text-xs font-bold text-eco-600 inline-flex items-center">Ariza berish <i class="fa-solid fa-arrow-right ml-1.5"></i></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- 2-SAHIFA: YO'NALISHLAR VA BOSQICHLAR (DIRECTIONS & STAGES)            -->
+        <!-- ===================================================================== -->
+        <section id="page-directions" class="page-view py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Sahifa sarlavhasi va ichki tablar -->
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 pb-6 border-b border-slate-200">
+                    <div>
+                        <span class="text-eco-600 font-bold text-xs uppercase tracking-wider">Tizimli yondashuv</span>
+                        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">Loyiha yo‘nalishlari va bosqichlari</h1>
+                    </div>
+
+                    <!-- Ichki Sub-Tab tugmalari -->
+                    <div class="inline-flex flex-wrap p-1.5 rounded-2xl bg-white border border-slate-200 shadow-sm self-start gap-1">
+                        <button type="button" data-subtab="tab-4dir" class="subtab-btn active px-4 py-2.5 rounded-xl text-sm font-bold bg-eco-600 text-white transition-all">
+                            4 asosiy yo‘nalish
+                        </button>
+                        <button type="button" data-subtab="tab-stages" class="subtab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-eco-700 transition-all">
+                            Amalga oshirish bosqichlari
+                        </button>
+                        <button type="button" data-subtab="tab-guide" class="subtab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-eco-700 transition-all">
+                            Saralash qoidalari
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sub-tab 1: 4 asosiy yo'nalish -->
+                <div id="tab-4dir" class="subtab-content">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-3xl p-7 shadow-sm border border-slate-100 hover:border-eco-300 transition-all flex flex-col justify-between">
+                            <div class="flex gap-5">
+                                <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl shrink-0">
+                                    <i class="fa-solid fa-dumpster"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">01-Yo‘nalish</span>
+                                    <h3 class="text-xl font-bold text-slate-900 mt-2 mb-2">Eco-bokslar tizimi</h3>
+                                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                        Ko‘p qavatli uylar, maktablar va bozorlarga plastik, qog‘oz, shisha va organik chiqindilar uchun rangli qutilar o‘rnatish.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+                                <span class="text-xs font-bold text-eco-700 bg-eco-50 px-3 py-1.5 rounded-lg">Natija: 60–70% saralash</span>
+                                <button type="button" data-page="direction-detail" data-dir="ecobox" class="dir-trigger px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-colors">
+                                    Batafsil ma’lumot <i class="fa-solid fa-arrow-right ml-1.5"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-3xl p-7 shadow-sm border border-slate-100 hover:border-eco-300 transition-all flex flex-col justify-between">
+                            <div class="flex gap-5">
+                                <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-2xl shrink-0">
+                                    <i class="fa-solid fa-gears"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs font-bold text-amber-700 bg-amber-50 px-3 py-1 rounded-full">02-Yo‘nalish</span>
+                                    <h3 class="text-xl font-bold text-slate-900 mt-2 mb-2">Qayta ishlash sexi</h3>
+                                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                        Plastik (PET) idishlarni maydalash (fleks olish) va makulaturani maxsus uskunalarda presslash jarayonini yo‘lga qo‘yish.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+                                <span class="text-xs font-bold text-eco-700 bg-eco-50 px-3 py-1.5 rounded-lg">Natija: Ikkilamchi xomashyo</span>
+                                <button type="button" data-page="direction-detail" data-dir="recycling" class="dir-trigger px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold transition-colors">
+                                    Batafsil ma’lumot <i class="fa-solid fa-arrow-right ml-1.5"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-3xl p-7 shadow-sm border border-slate-100 hover:border-eco-300 transition-all flex flex-col justify-between">
+                            <div class="flex gap-5">
+                                <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl shrink-0">
+                                    <i class="fa-solid fa-spa"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">03-Yo‘nalish</span>
+                                    <h3 class="text-xl font-bold text-slate-900 mt-2 mb-2">Organik kompost (Biogumus)</h3>
+                                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                        Oziq-ovqat qoldiqlari va bog‘-rog‘ chiqindilarini qayta ishlab, yuqori unumdor tabiiy biogumus (o‘g‘it) tayyorlash.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+                                <span class="text-xs font-bold text-eco-700 bg-eco-50 px-3 py-1.5 rounded-lg">Natija: Organik o‘g‘it</span>
+                                <button type="button" data-page="direction-detail" data-dir="compost" class="dir-trigger px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors">
+                                    Batafsil ma’lumot <i class="fa-solid fa-arrow-right ml-1.5"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-3xl p-7 shadow-sm border border-slate-100 hover:border-eco-300 transition-all flex flex-col justify-between">
+                            <div class="flex gap-5">
+                                <div class="w-14 h-14 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-2xl shrink-0">
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs font-bold text-purple-700 bg-purple-50 px-3 py-1 rounded-full">04-Yo‘nalish</span>
+                                    <h3 class="text-xl font-bold text-slate-900 mt-2 mb-2">Yashil ball dasturi</h3>
+                                    <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                                        Aholi va maktab o‘quvchilari uchun topshirilgan har bir kilogramm saralangan chiqindi evaziga bonus va chegirmalar tizimi.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+                                <span class="text-xs font-bold text-eco-700 bg-eco-50 px-3 py-1.5 rounded-lg">Natija: Faol ishtirok</span>
+                                <button type="button" data-page="direction-detail" data-dir="greenpoints" class="dir-trigger px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold transition-colors">
+                                    Batafsil ma’lumot <i class="fa-solid fa-arrow-right ml-1.5"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sub-tab 2: Amalga oshirish bosqichlari -->
+                <div id="tab-stages" class="subtab-content hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-white rounded-3xl p-7 shadow-sm border border-eco-100 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-5">
+                                    <span class="w-10 h-10 rounded-full bg-eco-600 text-white font-bold flex items-center justify-center shadow-md">1</span>
+                                    <span class="text-xs font-bold text-eco-700 bg-eco-50 px-3 py-1 rounded-full">1–2-oylar</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-900 mb-2">Tayyorgarlik va tahlil</h3>
+                                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                    Hududdagi chiqindi hajmini o‘rganish, mahalliy hokimiyat, maktablar va sanitar tozalash korxonalari bilan shartnomalar tuzish.
+                                </p>
+                            </div>
+                            <button type="button" data-page="contact" data-preset="hamkor" class="nav-trigger text-xs font-bold text-eco-700 hover:text-eco-800 inline-flex items-center">
+                                Hamkorlik shartnomasi <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+
+                        <div class="bg-white rounded-3xl p-7 shadow-sm border border-eco-100 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-5">
+                                    <span class="w-10 h-10 rounded-full bg-eco-600 text-white font-bold flex items-center justify-center shadow-md">2</span>
+                                    <span class="text-xs font-bold text-eco-700 bg-eco-50 px-3 py-1 rounded-full">3–4-oylar</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-900 mb-2">Infratuzilma yaratish</h3>
+                                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                    Rangli saralash qutilarini tayyorlash, kichik qayta ishlash sexi uchun bino ajratish hamda maydalash va presslash uskunalarini o‘rnatish.
+                                </p>
+                            </div>
+                            <button type="button" data-page="contact" data-preset="ecobox" class="nav-trigger text-xs font-bold text-eco-700 hover:text-eco-800 inline-flex items-center">
+                                Eco-boks buyurtma qilish <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+
+                        <div class="bg-white rounded-3xl p-7 shadow-sm border border-eco-100 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-5">
+                                    <span class="w-10 h-10 rounded-full bg-eco-600 text-white font-bold flex items-center justify-center shadow-md">3</span>
+                                    <span class="text-xs font-bold text-eco-700 bg-eco-50 px-3 py-1 rounded-full">5–6-oylar</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-900 mb-2">Ishga tushirish va targ‘ibot</h3>
+                                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                    Maktab va mahallalarda ekologik aksiyalar o‘tkazish, qabul punktlarini ochish va "Yashil ball" tizimini ishga tushirish.
+                                </p>
+                            </div>
+                            <button type="button" data-page="volunteers" class="nav-trigger text-xs font-bold text-eco-700 hover:text-eco-800 inline-flex items-center">
+                                Aksiyalarga qo‘shilish <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+
+                        <div class="bg-white rounded-3xl p-7 shadow-sm border border-eco-100 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-5">
+                                    <span class="w-10 h-10 rounded-full bg-amber-500 text-white font-bold flex items-center justify-center shadow-md">4</span>
+                                    <span class="text-xs font-bold text-amber-700 bg-amber-50 px-3 py-1 rounded-full">7-oydan boshlab</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-slate-900 mb-2">Ishlab chiqarishni kengaytirish</h3>
+                                <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                                    Qayta ishlangan xomashyodan tayyor mahsulotlar (plastik quvurlar, polietilen paketlar, polimer-qum plitkalari) ishlab chiqarish.
+                                </p>
+                            </div>
+                            <button type="button" data-page="direction-detail" data-dir="recycling" class="dir-trigger text-xs font-bold text-amber-700 hover:text-amber-800 inline-flex items-center">
+                                Sex mahsulotlari <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sub-tab 3: Saralash qoidalari (4 rangli boks) -->
+                <div id="tab-guide" class="subtab-content hidden">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                        <div class="rounded-3xl p-6 bg-amber-50 border-2 border-amber-300 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="px-3 py-1 rounded-full bg-amber-400 text-amber-950 text-xs font-extrabold uppercase">Sariq boks</span>
+                                    <i class="fa-solid fa-bottle-water text-2xl text-amber-600"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-slate-900 mb-2">Plastik va Metall</h4>
+                                <ul class="text-xs text-slate-700 space-y-2 mb-5">
+                                    <li><i class="fa-solid fa-check text-amber-600 mr-1.5"></i> Suv va ichimlik PET idishlari</li>
+                                    <li><i class="fa-solid fa-check text-amber-600 mr-1.5"></i> Alyuminiy va tunuka bankalar</li>
+                                    <li><i class="fa-solid fa-check text-amber-600 mr-1.5"></i> Polietilen paket va plyonkalar</li>
+                                </ul>
+                            </div>
+                            <button type="button" data-page="points" data-filter-preset="plastik" class="point-filter-nav w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold transition-colors">
+                                Plastik qabul punktlari
+                            </button>
+                        </div>
+
+                        <div class="rounded-3xl p-6 bg-sky-50 border-2 border-sky-300 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="px-3 py-1 rounded-full bg-sky-500 text-white text-xs font-extrabold uppercase">Ko‘k boks</span>
+                                    <i class="fa-solid fa-newspaper text-2xl text-sky-600"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-slate-900 mb-2">Qog‘oz va Karton</h4>
+                                <ul class="text-xs text-slate-700 space-y-2 mb-5">
+                                    <li><i class="fa-solid fa-check text-sky-600 mr-1.5"></i> Karton qutilar va qadoqlar</li>
+                                    <li><i class="fa-solid fa-check text-sky-600 mr-1.5"></i> Gazeta, jurnal va daftarlar</li>
+                                    <li><i class="fa-solid fa-check text-sky-600 mr-1.5"></i> Ofis qog‘ozlari (makulatura)</li>
+                                </ul>
+                            </div>
+                            <button type="button" data-page="points" data-filter-preset="qogoz" class="point-filter-nav w-full py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold transition-colors">
+                                Qog‘oz qabul punktlari
+                            </button>
+                        </div>
+
+                        <div class="rounded-3xl p-6 bg-emerald-50 border-2 border-emerald-300 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="px-3 py-1 rounded-full bg-emerald-600 text-white text-xs font-extrabold uppercase">Yashil boks</span>
+                                    <i class="fa-solid fa-wine-bottle text-2xl text-emerald-600"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-slate-900 mb-2">Shisha idishlar</h4>
+                                <ul class="text-xs text-slate-700 space-y-2 mb-5">
+                                    <li><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Shisha bankalar va butilkalar</li>
+                                    <li><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Kosmetika va dori shishalari</li>
+                                    <li><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Butun va siniq shisha bo‘laklari</li>
+                                </ul>
+                            </div>
+                            <button type="button" data-page="points" data-filter-preset="shisha" class="point-filter-nav w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors">
+                                Shisha qabul punktlari
+                            </button>
+                        </div>
+
+                        <div class="rounded-3xl p-6 bg-stone-100 border-2 border-stone-300 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="px-3 py-1 rounded-full bg-stone-700 text-white text-xs font-extrabold uppercase">Jigarrang boks</span>
+                                    <i class="fa-solid fa-apple-whole text-2xl text-stone-700"></i>
+                                </div>
+                                <h4 class="text-lg font-bold text-slate-900 mb-2">Organik chiqindilar</h4>
+                                <ul class="text-xs text-slate-700 space-y-2 mb-5">
+                                    <li><i class="fa-solid fa-check text-stone-700 mr-1.5"></i> Meva va sabzavot po‘choqlari</li>
+                                    <li><i class="fa-solid fa-check text-stone-700 mr-1.5"></i> Oziq-ovqat qoldiqlari</li>
+                                    <li><i class="fa-solid fa-check text-stone-700 mr-1.5"></i> Xazon, barg va bog‘ o‘tlari</li>
+                                </ul>
+                            </div>
+                            <button type="button" data-page="direction-detail" data-dir="compost" class="dir-trigger w-full py-2.5 rounded-xl bg-stone-700 hover:bg-stone-800 text-white text-xs font-bold transition-colors">
+                                Biogumus tayyorlash
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- 2B-SAHIFA: YO'NALISH TAFSILOTLARI (DIRECTION DETAIL PAGE)              -->
+        <!-- ===================================================================== -->
+        <section id="page-direction-detail" class="page-view py-12">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <button type="button" data-page="directions" class="nav-trigger inline-flex items-center px-4 py-2 rounded-xl bg-white border border-slate-200 hover:bg-eco-50 text-slate-700 text-sm font-semibold mb-6 transition-colors">
+                    <i class="fa-solid fa-arrow-left mr-2 text-eco-600"></i> Yo‘nalishlarga qaytish
+                </button>
+
+                <div class="bg-white rounded-3xl shadow-xl border border-eco-100 overflow-hidden">
+                    <div id="dir-detail-header" class="bg-gradient-to-r from-eco-800 to-teal-800 text-white p-8 sm:p-10">
+                        <span id="dir-detail-badge" class="inline-block px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold mb-3">01-Yo‘nalish</span>
+                        <h1 id="dir-detail-title" class="text-3xl sm:text-4xl font-extrabold mb-3">Eco-bokslar tizimi</h1>
+                        <p id="dir-detail-subtitle" class="text-eco-100 text-sm sm:text-base max-w-2xl">Mahallalar, maktablar va jamoat joylarida chiqindilarni boshlang‘ich bosqichda saralash infratuzilmasi.</p>
+                    </div>
+
+                    <div class="p-8 sm:p-10">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8" id="dir-detail-metrics">
+                            <!-- JS orqali to'ldiriladi -->
+                        </div>
+
+                        <h3 class="text-lg font-extrabold text-slate-900 mb-3">Qanday ishlaydi va asosiy afzalliklari?</h3>
+                        <p id="dir-detail-body" class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+                            <!-- JS orqali to'ldiriladi -->
+                        </p>
+
+                        <div class="bg-earth-50 rounded-2xl p-6 border border-earth-200 mb-8">
+                            <h4 class="text-sm font-bold text-slate-900 mb-3"><i class="fa-solid fa-list-check text-eco-600 mr-2"></i> Asosiy amalga oshiriladigan tadbirlar:</h4>
+                            <ul id="dir-detail-list" class="space-y-2.5 text-sm text-slate-700">
+                                <!-- JS orqali to'ldiriladi -->
+                            </ul>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button type="button" id="dir-detail-primary-cta" data-page="contact" class="nav-trigger px-7 py-3.5 rounded-xl bg-eco-600 hover:bg-eco-700 text-white font-bold text-sm transition-colors text-center">
+                                Ariza qoldirish
+                            </button>
+                            <button type="button" data-page="calculator" class="nav-trigger px-7 py-3.5 rounded-xl bg-eco-50 hover:bg-eco-100 text-eco-800 font-bold text-sm transition-colors text-center">
+                                Yashil Ball kalkulyatoriga o‘tish
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- 3-SAHIFA: YASHIL BALL KALKULYATORI (CALCULATOR)                       -->
+        <!-- ===================================================================== -->
+        <section id="page-calculator" class="page-view py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-8">
+                    <span class="text-eco-600 font-bold text-xs uppercase tracking-wider">Interaktiv hisoblagich</span>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">Yashil Ball va Ekologik Foyda Kalkulyatori</h1>
+                </div>
+
+                <!-- Kalkulyator bloki -->
+                <div class="bg-gradient-to-br from-eco-900 via-eco-800 to-teal-900 rounded-3xl p-6 sm:p-10 text-white shadow-2xl mb-12">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <!-- Slayderlar -->
+                        <div class="lg:col-span-7 space-y-5">
+                            <p class="text-eco-100/90 text-sm">Slayderlarni surish orqali topshiriladigan chiqindi miqdorini (kg) belgilang:</p>
+
+                            <!-- Plastik -->
+                            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
+                                <div class="flex justify-between items-center mb-2">
+                                    <label for="plastic-range" class="text-sm font-semibold flex items-center">
+                                        <span class="w-3 h-3 rounded-full bg-amber-400 mr-2"></span> Plastik (PET idishlar) — <span class="text-eco-300 ml-1">50 ball/kg</span>
+                                    </label>
+                                    <span class="text-lg font-bold text-amber-300"><span id="plastic-val">5</span> kg</span>
+                                </div>
+                                <input type="range" id="plastic-range" min="0" max="50" value="5" class="w-full">
+                            </div>
+
+                            <!-- Qog'oz -->
+                            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
+                                <div class="flex justify-between items-center mb-2">
+                                    <label for="paper-range" class="text-sm font-semibold flex items-center">
+                                        <span class="w-3 h-3 rounded-full bg-sky-400 mr-2"></span> Qog‘oz va karton — <span class="text-eco-300 ml-1">30 ball/kg</span>
+                                    </label>
+                                    <span class="text-lg font-bold text-sky-300"><span id="paper-val">8</span> kg</span>
+                                </div>
+                                <input type="range" id="paper-range" min="0" max="50" value="8" class="w-full">
+                            </div>
+
+                            <!-- Shisha -->
+                            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
+                                <div class="flex justify-between items-center mb-2">
+                                    <label for="glass-range" class="text-sm font-semibold flex items-center">
+                                        <span class="w-3 h-3 rounded-full bg-emerald-400 mr-2"></span> Shisha idishlar — <span class="text-eco-300 ml-1">20 ball/kg</span>
+                                    </label>
+                                    <span class="text-lg font-bold text-emerald-300"><span id="glass-val">4</span> kg</span>
+                                </div>
+                                <input type="range" id="glass-range" min="0" max="50" value="4" class="w-full">
+                            </div>
+
+                            <!-- Metall -->
+                            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
+                                <div class="flex justify-between items-center mb-2">
+                                    <label for="metal-range" class="text-sm font-semibold flex items-center">
+                                        <span class="w-3 h-3 rounded-full bg-rose-400 mr-2"></span> Alyuminiy / Metall — <span class="text-eco-300 ml-1">80 ball/kg</span>
+                                    </label>
+                                    <span class="text-lg font-bold text-rose-300"><span id="metal-val">2</span> kg</span>
+                                </div>
+                                <input type="range" id="metal-range" min="0" max="30" value="2" class="w-full">
+                            </div>
+                        </div>
+
+                        <!-- Natijalar -->
+                        <div class="lg:col-span-5">
+                            <div class="bg-white text-slate-900 rounded-3xl p-6 sm:p-8 shadow-xl">
+                                <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-5">
+                                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Sizning natijangiz</span>
+                                    <span class="px-3 py-1 rounded-full bg-eco-100 text-eco-700 text-xs font-bold" id="eco-rank">Eco-Faol</span>
+                                </div>
+
+                                <div class="text-center py-4 bg-eco-50 rounded-2xl border border-eco-100 mb-5">
+                                    <div class="text-xs text-eco-800 font-semibold">Jami to‘plangan ball</div>
+                                    <div class="text-5xl font-extrabold text-eco-600 my-1" id="total-points">730</div>
+                                    <div class="text-[11px] text-slate-500">100 ball = 5 000 so‘m ekvivalentida bonus</div>
+                                </div>
+
+                                <div class="grid grid-cols-3 gap-3 mb-5">
+                                    <div class="p-3 rounded-2xl bg-slate-50 border border-slate-100 text-center">
+                                        <div class="text-[11px] text-slate-500 mb-1">Bonus pul</div>
+                                        <div class="text-sm sm:text-base font-extrabold text-slate-800"><span id="bonus-sum">36 500</span> <span class="text-[10px]">so‘m</span></div>
+                                    </div>
+                                    <div class="p-3 rounded-2xl bg-slate-50 border border-slate-100 text-center">
+                                        <div class="text-[11px] text-slate-500 mb-1">CO₂ kamayishi</div>
+                                        <div class="text-sm sm:text-base font-extrabold text-sky-700"><span id="co2-saved">26.4</span> kg</div>
+                                    </div>
+                                    <div class="p-3 rounded-2xl bg-slate-50 border border-slate-100 text-center">
+                                        <div class="text-[11px] text-slate-500 mb-1">Saqlangan daraxt</div>
+                                        <div class="text-sm sm:text-base font-extrabold text-eco-700"><span id="trees-saved">0.2</span> ta</div>
+                                    </div>
+                                </div>
+
+                                <div class="p-3.5 rounded-2xl bg-amber-50 border border-amber-200/70 mb-5">
+                                    <div class="text-xs font-bold text-amber-800 mb-1"><i class="fa-solid fa-gift mr-1"></i> Tavsiya etilgan sovg‘a:</div>
+                                    <p class="text-xs text-amber-900/80 leading-relaxed" id="reward-suggestion">
+                                        Hamkor do‘konlarda 10% chegirma yoki bog‘ingiz uchun 2 qop tabiiy biogumus o‘g‘iti!
+                                    </p>
+                                </div>
+
+                                <button type="button" data-page="contact" data-preset="yashilball" class="nav-trigger w-full py-3.5 px-6 rounded-xl bg-eco-600 hover:bg-eco-700 text-white font-bold text-sm text-center block transition-colors shadow-lg shadow-eco-600/20">
+                                    Yashil Ball kartasini ochish
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sovg'alar katalogi (Har biri alohida sahifaga o'tadi) -->
+                <div>
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-5">
+                        <h2 class="text-xl font-extrabold text-slate-900">Yashil Ball sovg‘alar katalogi</h2>
+                        <span class="text-xs text-slate-500">Sovg‘ani tanlang va ballaringizni almashtiring</span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                        <div class="bg-white rounded-3xl p-6 border border-slate-200/80 hover:border-eco-400 hover:shadow-lg transition-all flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="w-11 h-11 rounded-xl bg-eco-100 text-eco-700 flex items-center justify-center text-lg">
+                                        <i class="fa-solid fa-bag-shopping"></i>
+                                    </div>
+                                    <span class="text-xs font-extrabold text-eco-700 bg-eco-50 px-3 py-1 rounded-full">300 ball</span>
+                                </div>
+                                <h3 class="font-bold text-slate-900 text-base mb-1.5">Ekologik sumka (Eco-bag)</h3>
+                                <p class="text-xs text-slate-500 leading-relaxed mb-5">Polietilen paketlar o‘rnini bosuvchi 100% qayta ishlangan mustahkam matoli sumka.</p>
+                            </div>
+                            <button type="button" data-reward="bag" class="reward-trigger w-full py-2.5 rounded-xl bg-eco-600 hover:bg-eco-700 text-white text-xs font-bold transition-colors">
+                                Ballarni almashtirish <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+
+                        <div class="bg-white rounded-3xl p-6 border border-slate-200/80 hover:border-eco-400 hover:shadow-lg transition-all flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="w-11 h-11 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-lg">
+                                        <i class="fa-solid fa-seedling"></i>
+                                    </div>
+                                    <span class="text-xs font-extrabold text-amber-700 bg-amber-50 px-3 py-1 rounded-full">450 ball</span>
+                                </div>
+                                <h3 class="font-bold text-slate-900 text-base mb-1.5">Biogumus o‘g‘iti (10 kg)</h3>
+                                <p class="text-xs text-slate-500 leading-relaxed mb-5">Uy gullari, tomorqa va issiqxonalar hosildorligini oshiruvchi 100% organik o‘g‘it.</p>
+                            </div>
+                            <button type="button" data-reward="biogumus" class="reward-trigger w-full py-2.5 rounded-xl bg-eco-600 hover:bg-eco-700 text-white text-xs font-bold transition-colors">
+                                Ballarni almashtirish <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+
+                        <div class="bg-white rounded-3xl p-6 border border-slate-200/80 hover:border-eco-400 hover:shadow-lg transition-all flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="w-11 h-11 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg">
+                                        <i class="fa-solid fa-tree"></i>
+                                    </div>
+                                    <span class="text-xs font-extrabold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">600 ball</span>
+                                </div>
+                                <h3 class="font-bold text-slate-900 text-base mb-1.5">Ko‘chat sovg‘asi (2 tup)</h3>
+                                <p class="text-xs text-slate-500 leading-relaxed mb-5">Mahallangiz yoki hovlingizni ko‘kalamzorlashtirish uchun mevali va manzarali ko‘chatlar.</p>
+                            </div>
+                            <button type="button" data-reward="sapling" class="reward-trigger w-full py-2.5 rounded-xl bg-eco-600 hover:bg-eco-700 text-white text-xs font-bold transition-colors">
+                                Ballarni almashtirish <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+
+                        <div class="bg-white rounded-3xl p-6 border border-slate-200/80 hover:border-eco-400 hover:shadow-lg transition-all flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="w-11 h-11 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center text-lg">
+                                        <i class="fa-solid fa-bus"></i>
+                                    </div>
+                                    <span class="text-xs font-extrabold text-blue-700 bg-blue-50 px-3 py-1 rounded-full">800 ball</span>
+                                </div>
+                                <h3 class="font-bold text-slate-900 text-base mb-1.5">Jamoat transporti bonusi</h3>
+                                <p class="text-xs text-slate-500 leading-relaxed mb-5">Shahar va tumanlararo avtobuslarda 20 ta bepul qatnov uchun transport kartasi balansi.</p>
+                            </div>
+                            <button type="button" data-reward="transport" class="reward-trigger w-full py-2.5 rounded-xl bg-eco-600 hover:bg-eco-700 text-white text-xs font-bold transition-colors">
+                                Ballarni almashtirish <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- 3B-SAHIFA: SOVG'ANI RASMIYLASHTIRISH (REWARD REDEEM PAGE)             -->
+        <!-- ===================================================================== -->
+        <section id="page-reward-redeem" class="page-view py-12">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <button type="button" data-page="calculator" class="nav-trigger inline-flex items-center px-4 py-2 rounded-xl bg-white border border-slate-200 hover:bg-eco-50 text-slate-700 text-sm font-semibold mb-6 transition-colors">
+                    <i class="fa-solid fa-arrow-left mr-2 text-eco-600"></i> Kalkulyatorga qaytish
+                </button>
+
+                <div class="bg-white rounded-3xl shadow-xl border border-eco-100 overflow-hidden">
+                    <div class="bg-eco-800 text-white p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-eco-300">Yashil Ball Sovg‘asi</span>
+                            <h1 id="redeem-title" class="text-2xl sm:text-3xl font-extrabold mt-1">Ekologik sumka (Eco-bag)</h1>
+                        </div>
+                        <div class="px-4 py-2.5 rounded-2xl bg-white/15 text-center shrink-0">
+                            <div class="text-[11px] text-eco-200">Kerakli ball</div>
+                            <div id="redeem-cost" class="text-xl font-extrabold text-amber-300">300 ball</div>
+                        </div>
+                    </div>
+
+                    <div class="p-8">
+                        <!-- Ballar holati ko'rsatkichi -->
+                        <div id="redeem-balance-box" class="p-4 rounded-2xl bg-eco-50 border border-eco-200 flex items-center justify-between mb-6">
+                            <div>
+                                <div class="text-xs text-slate-600">Kalkulyatordagi joriy balansingiz:</div>
+                                <div class="text-lg font-extrabold text-eco-700"><span id="redeem-user-points">730</span> ball</div>
+                            </div>
+                            <span id="redeem-status-badge" class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
+                                <i class="fa-solid fa-check mr-1"></i> Ballaringiz yetarli!
+                            </span>
+                        </div>
+
+                        <p id="redeem-desc" class="text-sm text-slate-600 leading-relaxed mb-6">
+                            Polietilen paketlar o‘rnini bosuvchi 100% qayta ishlangan mustahkam matoli sumka.
+                        </p>
+
+                        <form id="redeem-form" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="redeem-name" class="block text-sm font-semibold text-slate-700 mb-1.5">F.I.SH. *</label>
+                                    <input type="text" id="redeem-name" required placeholder="Ismingizni kiriting" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-eco-500 focus:ring-2 focus:ring-eco-200 outline-none text-sm">
+                                </div>
+                                <div>
+                                    <label for="redeem-phone" class="block text-sm font-semibold text-slate-700 mb-1.5">Telefon raqam *</label>
+                                    <input type="tel" id="redeem-phone" required placeholder="+998 90 123 45 67" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-eco-500 focus:ring-2 focus:ring-eco-200 outline-none text-sm">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="redeem-pickup" class="block text-sm font-semibold text-slate-700 mb-1.5">Sovg‘ani olib ketish punkti *</label>
+                                <select id="redeem-pickup" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-eco-500 focus:ring-2 focus:ring-eco-200 outline-none text-sm bg-white">
+                                    <option>Yaypan shahri Markaziy Eco-punkti (Turkiston ko‘chasi, 18)</option>
+                                    <option>Yaypan Dehqon bozori Eco-zonasi</option>
+                                    <option>Farg‘ona Qayta Ishlash Markazi (Sanoat zonasi, 4)</option>
+                                    <option>Qo‘qon sh. "Yashil Xiyobon" Eco-punkti</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-eco-600 hover:bg-eco-700 text-white font-bold text-sm shadow-lg shadow-eco-600/20 transition-all">
+                                <i class="fa-solid fa-gift mr-2"></i> Sovg‘ani band qilish (Vaucher olish)
+                            </button>
+                        </form>
+
+                        <!-- Vaucher tasdig'i -->
+                        <div id="redeem-success" class="hidden text-center py-6 bg-eco-50/70 rounded-2xl border border-eco-200 px-6">
+                            <div class="w-14 h-14 rounded-full bg-eco-600 text-white flex items-center justify-center text-2xl mx-auto mb-3">
+                                <i class="fa-solid fa-ticket"></i>
+                            </div>
+                            <h3 class="text-xl font-extrabold text-slate-900 mb-1">Sovg‘a vaucheringiz tayyor!</h3>
+                            <p class="text-xs text-slate-600 mb-4" id="redeem-receipt-text"></p>
+                            <div class="inline-block px-5 py-2 rounded-xl bg-white border-2 border-dashed border-eco-400 font-mono text-base font-extrabold text-eco-800 mb-5" id="redeem-code">
+                                ECO-2026-8492
+                            </div>
+                            <div>
+                                <button type="button" data-page="calculator" class="nav-trigger px-6 py-2.5 rounded-xl bg-eco-600 text-white text-xs font-bold hover:bg-eco-700">
+                                    Kalkulyatorga qaytish
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- 4-SAHIFA: QABUL PUNKTLARI (COLLECTION POINTS)                         -->
+        <!-- ===================================================================== -->
+        <section id="page-points" class="page-view py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-10 gap-6">
+                    <div>
+                        <span class="text-eco-600 font-bold text-xs uppercase tracking-wider">Farg‘ona viloyati, Yaypan va tumanlar</span>
+                        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">Chiqindi qabul qilish va Eco-boks punktlari</h1>
+                    </div>
+
+                    <!-- Filtrlash tugmalari -->
+                    <div class="flex flex-wrap gap-2" id="filter-buttons">
+                        <button type="button" data-filter="all" class="filter-btn active px-4 py-2 rounded-xl text-sm font-semibold bg-eco-600 text-white transition-all">
+                            Barchasi
+                        </button>
+                        <button type="button" data-filter="plastik" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-eco-50 transition-all">
+                            Plastik
+                        </button>
+                        <button type="button" data-filter="qogoz" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-eco-50 transition-all">
+                            Qog‘oz
+                        </button>
+                        <button type="button" data-filter="shisha" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-eco-50 transition-all">
+                            Shisha
+                        </button>
+                        <button type="button" data-filter="metall" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-eco-50 transition-all">
+                            Metall
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Punktlar kartalari -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="points-grid">
+                    <!-- Punkt 1: Yaypan Markaziy -->
+                    <div class="point-card rounded-3xl p-6 bg-white border border-slate-200/80 hover:border-eco-400 shadow-sm transition-all flex flex-col justify-between" data-types="plastik qogoz shisha metall">
+                        <div>
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="w-12 h-12 rounded-2xl bg-eco-100 text-eco-700 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-building-user"></i>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">Ochiq • 08:00–20:00</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-1">Yaypan shahri Markaziy Eco-punkti</h3>
+                            <p class="text-xs text-slate-500 mb-4"><i class="fa-solid fa-location-dot text-eco-600 mr-1"></i> O‘zbekiston tumani, Yaypan sh., Turkiston ko‘chasi, 18-uy</p>
+                            <div class="flex flex-wrap gap-1.5 mb-5">
+                                <span class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800 text-xs font-semibold">Plastik</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-sky-100 text-sky-800 text-xs font-semibold">Qog‘oz</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-semibold">Shisha</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-rose-100 text-rose-800 text-xs font-semibold">Metall</span>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-eco-700 font-bold text-xs">+10% bonus</span>
+                            <button type="button" data-point="yaypan-markaz" class="point-detail-trigger px-4 py-2 rounded-xl bg-eco-600 hover:bg-eco-700 text-white text-xs font-bold transition-colors">
+                                Punkt tafsilotlari <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Punkt 2: Yaypan Dehqon bozori -->
+                    <div class="point-card rounded-3xl p-6 bg-white border border-slate-200/80 hover:border-eco-400 shadow-sm transition-all flex flex-col justify-between" data-types="plastik qogoz metall">
+                        <div>
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-store"></i>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">Ochiq • 07:00–19:00</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-1">Yaypan Dehqon bozori Eco-zonasi</h3>
+                            <p class="text-xs text-slate-500 mb-4"><i class="fa-solid fa-location-dot text-eco-600 mr-1"></i> Yaypan sh., Markaziy bozor sharqiy darvozasi</p>
+                            <div class="flex flex-wrap gap-1.5 mb-5">
+                                <span class="px-2.5 py-1 rounded-lg bg-sky-100 text-sky-800 text-xs font-semibold">Karton / Qog‘oz</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800 text-xs font-semibold">Plastik</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-rose-100 text-rose-800 text-xs font-semibold">Metall</span>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-amber-700 font-bold text-xs">Yirik hajmli qabul</span>
+                            <button type="button" data-point="yaypan-bozor" class="point-detail-trigger px-4 py-2 rounded-xl bg-eco-600 hover:bg-eco-700 text-white text-xs font-bold transition-colors">
+                                Punkt tafsilotlari <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Punkt 3: Maktab hududi -->
+                    <div class="point-card rounded-3xl p-6 bg-white border border-slate-200/80 hover:border-eco-400 shadow-sm transition-all flex flex-col justify-between" data-types="plastik qogoz">
+                        <div>
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-school"></i>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">Ochiq • 08:00–18:00</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-1">1-sonli IDUM "Eco-Maktab" punkti</h3>
+                            <p class="text-xs text-slate-500 mb-4"><i class="fa-solid fa-location-dot text-eco-600 mr-1"></i> O‘zbekiston tumani, Yoshlik MFY, maktab hovlisi</p>
+                            <div class="flex flex-wrap gap-1.5 mb-5">
+                                <span class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800 text-xs font-semibold">Plastik</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-sky-100 text-sky-800 text-xs font-semibold">Makulatura</span>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-blue-700 font-bold text-xs">Eco-Maktab</span>
+                            <button type="button" data-point="yaypan-maktab" class="point-detail-trigger px-4 py-2 rounded-xl bg-eco-600 hover:bg-eco-700 text-white text-xs font-bold transition-colors">
+                                Punkt tafsilotlari <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Punkt 4: Farg'ona shahri -->
+                    <div class="point-card rounded-3xl p-6 bg-white border border-slate-200/80 hover:border-eco-400 shadow-sm transition-all flex flex-col justify-between" data-types="plastik qogoz shisha metall">
+                        <div>
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-industry"></i>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">24/7 Qabul</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-1">Farg‘ona Qayta Ishlash Sexi va Markazi</h3>
+                            <p class="text-xs text-slate-500 mb-4"><i class="fa-solid fa-location-dot text-eco-600 mr-1"></i> Farg‘ona sh., Sanoat zonasi, 4-bino</p>
+                            <div class="flex flex-wrap gap-1.5 mb-5">
+                                <span class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800 text-xs font-semibold">Plastik</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-sky-100 text-sky-800 text-xs font-semibold">Qog‘oz</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-semibold">Shisha</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-rose-100 text-rose-800 text-xs font-semibold">Metall</span>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-eco-700 font-bold text-xs">Bosh markaz</span>
+                            <button type="button" data-point="fargona-markaz" class="point-detail-trigger px-4 py-2 rounded-xl bg-eco-600 hover:bg-eco-700 text-white text-xs font-bold transition-colors">
+                                Punkt tafsilotlari <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Punkt 5: Qo'qon shahri -->
+                    <div class="point-card rounded-3xl p-6 bg-white border border-slate-200/80 hover:border-eco-400 shadow-sm transition-all flex flex-col justify-between" data-types="qogoz shisha">
+                        <div>
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-tree"></i>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">Ochiq • 08:00–21:00</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-1">Qo‘qon sh. "Yashil Xiyobon" Eco-punkti</h3>
+                            <p class="text-xs text-slate-500 mb-4"><i class="fa-solid fa-location-dot text-eco-600 mr-1"></i> Qo‘qon sh., Movarounnahr ko‘chasi, 42-uy</p>
+                            <div class="flex flex-wrap gap-1.5 mb-5">
+                                <span class="px-2.5 py-1 rounded-lg bg-sky-100 text-sky-800 text-xs font-semibold">Qog‘oz</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-semibold">Shisha</span>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-teal-700 font-bold text-xs">Biogumus sotuvi</span>
+                            <button type="button" data-point="qoqon-xiyobon" class="point-detail-trigger px-4 py-2 rounded-xl bg-eco-600 hover:bg-eco-700 text-white text-xs font-bold transition-colors">
+                                Punkt tafsilotlari <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Yangi punkt buyurtma kartasi -->
+                    <div class="rounded-3xl p-6 bg-gradient-to-br from-eco-50 to-emerald-100/60 border-2 border-dashed border-eco-300 flex flex-col items-center justify-center text-center">
+                        <div class="w-12 h-12 rounded-full bg-eco-600 text-white flex items-center justify-center text-xl mb-3 shadow-md">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900 mb-1">Sizning mahallangizda yo‘qmi?</h3>
+                        <p class="text-xs text-slate-600 mb-4">Mahallangiz yoki maktabingizga Eco-boks o‘rnatish uchun ariza qoldiring.</p>
+                        <button type="button" data-page="contact" data-preset="ecobox" class="nav-trigger px-5 py-2.5 rounded-xl bg-eco-600 hover:bg-eco-700 text-white text-xs font-bold transition-colors">
+                            Eco-boks buyurtma qilish
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- 4B-SAHIFA: PUNKT TAFSILOTLARI VA YO'NALISH OLISH (POINT DETAIL PAGE)   -->
+        <!-- ===================================================================== -->
+        <section id="page-point-detail" class="page-view py-12">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <button type="button" data-page="points" class="nav-trigger inline-flex items-center px-4 py-2 rounded-xl bg-white border border-slate-200 hover:bg-eco-50 text-slate-700 text-sm font-semibold mb-6 transition-colors">
+                    <i class="fa-solid fa-arrow-left mr-2 text-eco-600"></i> Qabul punktlariga qaytish
+                </button>
+
+                <div class="bg-white rounded-3xl shadow-xl border border-eco-100 overflow-hidden">
+                    <div class="bg-eco-900 text-white p-8">
+                        <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                            <span id="pt-detail-status" class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold">Ochiq • 08:00–20:00</span>
+                            <span id="pt-detail-phone" class="text-xs text-eco-200 font-semibold"><i class="fa-solid fa-phone mr-1"></i> +998 (90) 123-45-67</span>
+                        </div>
+                        <h1 id="pt-detail-name" class="text-2xl sm:text-3xl font-extrabold mb-2">Yaypan shahri Markaziy Eco-punkti</h1>
+                        <p id="pt-detail-address" class="text-eco-200 text-sm"><i class="fa-solid fa-location-dot mr-1.5 text-amber-400"></i> O‘zbekiston tumani, Yaypan sh., Turkiston ko‘chasi, 18-uy</p>
+                    </div>
+
+                    <div class="p-8">
+                        <!-- Sxematik Xarita va Yo'nalish ko'rsatkichi -->
+                        <div class="rounded-2xl bg-gradient-to-br from-emerald-50 via-teal-50 to-sky-50 border border-eco-200 p-6 mb-6 relative overflow-hidden">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-10">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-14 h-14 rounded-2xl bg-eco-600 text-white flex items-center justify-center text-2xl shadow-lg shrink-0">
+                                        <i class="fa-solid fa-map-location-dot"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-bold text-eco-700 uppercase">Mo‘ljal va Marshrut</div>
+                                        <div id="pt-detail-landmark" class="text-base font-bold text-slate-900">Tuman hokimiyati binosidan 300 metr janubda</div>
+                                        <div id="pt-detail-coords" class="text-xs text-slate-500 mt-0.5">GPS koordinatalar: 40.3758° N, 70.8156° E</div>
+                                    </div>
+                                </div>
+                                <a id="pt-detail-map-link" href="https://maps.google.com/?q=40.3758,70.8156" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-eco-600 hover:bg-eco-700 text-white text-xs font-bold shadow-md transition-colors text-center shrink-0">
+                                    <i class="fa-solid fa-diamond-turn-right mr-1.5"></i> Xaritada ochish
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100">
+                                <h3 class="text-sm font-bold text-slate-900 mb-3"><i class="fa-solid fa-recycle text-eco-600 mr-1.5"></i> Qabul qilinadigan xomashyolar:</h3>
+                                <ul id="pt-detail-materials" class="space-y-2 text-xs text-slate-700">
+                                    <!-- JS orqali -->
+                                </ul>
+                            </div>
+                            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100">
+                                <h3 class="text-sm font-bold text-slate-900 mb-3"><i class="fa-solid fa-circle-info text-eco-600 mr-1.5"></i> Qo‘shimcha xizmatlar:</h3>
+                                <ul id="pt-detail-services" class="space-y-2 text-xs text-slate-700">
+                                    <!-- JS orqali -->
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <button type="button" data-page="calculator" class="nav-trigger flex-1 py-3.5 px-6 rounded-xl bg-eco-600 hover:bg-eco-700 text-white font-bold text-sm text-center transition-colors">
+                                Topshiriladigan chiqindi ballini hisoblash
+                            </button>
+                            <button type="button" data-page="contact" data-preset="ecobox" class="nav-trigger flex-1 py-3.5 px-6 rounded-xl bg-eco-50 hover:bg-eco-100 text-eco-800 font-bold text-sm text-center transition-colors">
+                                Kuryer orqali olib ketishga buyurtma
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- 5-SAHIFA: VOLONTYORLAR VA ECO-AKSIYA (VOLUNTEERS PAGE)                -->
+        <!-- ===================================================================== -->
+        <section id="page-volunteers" class="page-view py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-10">
+                    <span class="text-eco-600 font-bold text-xs uppercase tracking-wider">Yoshlar va Jamoatchilik Harakati</span>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">Volontyorlar va Ekologik Aksiyalar</h1>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Chap ustun: Bo'lajak aksiyalar va Reyting -->
+                    <div class="lg:col-span-7 space-y-8">
+                        <!-- Yaqinlashib kelayotgan aksiyalar -->
+                        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80">
+                            <h2 class="text-xl font-extrabold text-slate-900 mb-5"><i class="fa-solid fa-calendar-check text-eco-600 mr-2"></i> Yaqinlashib kelayotgan Eco-Aksiyalar</h2>
+                            <div class="space-y-4">
+                                <div class="p-4 rounded-2xl bg-eco-50/70 border border-eco-200/70 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                    <div>
+                                        <span class="px-2.5 py-0.5 rounded-full bg-eco-600 text-white text-[11px] font-bold">28-Noyabr • Shanba</span>
+                                        <h3 class="font-bold text-slate-900 text-base mt-1.5">"Toza Yaypan" umumxalq hashar va saralash aksiyasi</h3>
+                                        <p class="text-xs text-slate-600 mt-0.5"><i class="fa-solid fa-location-dot text-eco-600 mr-1"></i> Yaypan Markaziy bog‘i va kanal bo‘yi • Soat 09:00</p>
+                                    </div>
+                                    <button type="button" data-event="Toza Yaypan aksiyasi" class="event-join-btn px-4 py-2.5 rounded-xl bg-eco-600 hover:bg-eco-700 text-white text-xs font-bold shrink-0 transition-colors">
+                                        Ishtirok etish (+200 ball)
+                                    </button>
+                                </div>
+
+                                <div class="p-4 rounded-2xl bg-amber-50/70 border border-amber-200/70 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                    <div>
+                                        <span class="px-2.5 py-0.5 rounded-full bg-amber-500 text-white text-[11px] font-bold">5-Dekabr • Shanba</span>
+                                        <h3 class="font-bold text-slate-900 text-base mt-1.5">"Eco-Maktab" makulatura va plastik yig‘ish marafoni</h3>
+                                        <p class="text-xs text-slate-600 mt-0.5"><i class="fa-solid fa-location-dot text-amber-600 mr-1"></i> O‘zbekiston tumani barcha maktablarida • Soat 10:00</p>
+                                    </div>
+                                    <button type="button" data-event="Eco-Maktab marafoni" class="event-join-btn px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold shrink-0 transition-colors">
+                                        Ishtirok etish (+150 ball)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Eng faol eko-faollar reytingi -->
+                        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80">
+                            <div class="flex items-center justify-between mb-5">
+                                <h2 class="text-xl font-extrabold text-slate-900"><i class="fa-solid fa-trophy text-amber-500 mr-2"></i> Top Eko-Faollar Reytingi</h2>
+                                <span class="text-xs font-semibold text-slate-500">Noyabr oyi natijalari</span>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between p-3.5 rounded-2xl bg-amber-50 border border-amber-200">
+                                    <div class="flex items-center space-x-3">
+                                        <span class="w-8 h-8 rounded-full bg-amber-500 text-white font-extrabold text-sm flex items-center justify-center">1</span>
+                                        <div>
+                                            <div class="text-sm font-bold text-slate-900">Azizbek Tursunov</div>
+                                            <div class="text-xs text-slate-500">Yaypan sh., Yoshlik MFY • 145 kg saralangan</div>
+                                        </div>
+                                    </div>
+                                    <span class="text-sm font-extrabold text-eco-700">6 450 ball</span>
+                                </div>
+
+                                <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80">
+                                    <div class="flex items-center space-x-3">
+                                        <span class="w-8 h-8 rounded-full bg-slate-400 text-white font-extrabold text-sm flex items-center justify-center">2</span>
+                                        <div>
+                                            <div class="text-sm font-bold text-slate-900">Madina Karimova</div>
+                                            <div class="text-xs text-slate-500">1-sonli IDUM o‘quvchisi • 118 kg saralangan</div>
+                                        </div>
+                                    </div>
+                                    <span class="text-sm font-extrabold text-eco-700">5 120 ball</span>
+                                </div>
+
+                                <div class="flex items-center justify-between p-3.5 rounded-2xl bg-orange-50/60 border border-orange-200/70">
+                                    <div class="flex items-center space-x-3">
+                                        <span class="w-8 h-8 rounded-full bg-orange-500 text-white font-extrabold text-sm flex items-center justify-center">3</span>
+                                        <div>
+                                            <div class="text-sm font-bold text-slate-900">Jasurbek Qodirov</div>
+                                            <div class="text-xs text-slate-500">Farg‘ona sh., Mustaqillik MFY • 96 kg saralangan</div>
+                                        </div>
+                                    </div>
+                                    <span class="text-sm font-extrabold text-eco-700">4 380 ball</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- O'ng ustun: Volontyorlikka tezkor ro'yxatdan o'tish -->
+                    <div class="lg:col-span-5">
+                        <div class="bg-gradient-to-br from-eco-800 to-teal-900 text-white rounded-3xl p-7 sm:p-8 shadow-xl sticky top-24">
+                            <span class="inline-block px-3 py-1 rounded-full bg-white/15 text-eco-200 text-xs font-bold mb-3">Jamoamizga qo‘shiling</span>
+                            <h2 class="text-2xl font-extrabold mb-2">Volontyor sifatida ro‘yxatdan o‘tish</h2>
+                            <p class="text-xs text-eco-100/90 leading-relaxed mb-6">
+                                Ekologik aksiyalarda qatnashing, maxsus volontyorlik sertifikati va qo‘shimcha "Yashil ball" bonuslariga ega bo‘ling!
+                            </p>
+
+                            <form id="volunteer-form" class="space-y-4">
+                                <div>
+                                    <label for="vol-name" class="block text-xs font-semibold text-eco-100 mb-1">Ism va familiyangiz *</label>
+                                    <input type="text" id="vol-name" required placeholder="Masalan: Dilnoza Rahmonova" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-eco-200/60 focus:border-eco-300 outline-none text-sm">
+                                </div>
+                                <div>
+                                    <label for="vol-phone" class="block text-xs font-semibold text-eco-100 mb-1">Telefon / Telegram raqamingiz *</label>
+                                    <input type="tel" id="vol-phone" required placeholder="+998 90 123 45 67" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-eco-200/60 focus:border-eco-300 outline-none text-sm">
+                                </div>
+                                <div>
+                                    <label for="vol-event" class="block text-xs font-semibold text-eco-100 mb-1">Tanlangan yo‘nalish yoki aksiya</label>
+                                    <select id="vol-event" class="w-full px-4 py-3 rounded-xl bg-eco-900 border border-white/20 text-white focus:border-eco-300 outline-none text-sm">
+                                        <option value="Doimiy volontyor">Doimiy Eco-Volontyor bo‘lish</option>
+                                        <option value="Toza Yaypan aksiyasi">"Toza Yaypan" aksiyasi (28-Noyabr)</option>
+                                        <option value="Eco-Maktab marafoni">"Eco-Maktab" marafoni (5-Dekabr)</option>
+                                        <option value="Targ‘ibot guruhi">Maktablarda targ‘ibot o‘tkazish</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-sm shadow-lg transition-all">
+                                    <i class="fa-solid fa-hand-fist mr-1.5"></i> Volontyor bo‘lish
+                                </button>
+                            </form>
+
+                            <div id="vol-success" class="hidden text-center py-6 bg-white/10 rounded-2xl p-5 mt-2">
+                                <div class="w-12 h-12 rounded-full bg-emerald-400 text-slate-900 flex items-center justify-center text-xl mx-auto mb-3">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <h3 class="text-lg font-bold mb-1">Tabriklaymiz, siz jamoadasiz!</h3>
+                                <p class="text-xs text-eco-100 mb-4" id="vol-success-text"></p>
+                                <button type="button" id="vol-reset-btn" class="px-4 py-2 rounded-xl bg-white/20 hover:bg-white/30 text-xs font-bold">
+                                    Yana ro‘yxatdan o‘tish
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- 6-SAHIFA: BOG'LANISH VA ARIZA (CONTACT & ORDER)                       -->
+        <!-- ===================================================================== -->
+        <section id="page-contact" class="page-view py-12">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-8">
+                    <span class="text-eco-600 font-bold text-xs uppercase tracking-wider">Hamkorlik va Buyurtma</span>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">Bog‘lanish va Eco-boks buyurtma qilish</h1>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-xl border border-eco-100 overflow-hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-12">
+                        <!-- Chap ustun: Interaktiv aloqa kartalari -->
+                        <div class="lg:col-span-5 bg-eco-800 text-white p-8 sm:p-10 flex flex-col justify-between">
+                            <div>
+                                <span class="inline-block px-3 py-1 rounded-full bg-eco-700 text-eco-200 text-xs font-semibold mb-4">Tezkor aloqa</span>
+                                <h2 class="text-2xl font-extrabold leading-tight mb-4">Tashabbusga qo‘shiling!</h2>
+                                <p class="text-eco-100/90 text-sm leading-relaxed mb-8">
+                                    Mahallangizga Eco-boks o‘rnatish, maktabda aksiya o‘tkazish yoki volontyor sifatida hamkorlik qilish uchun formani to‘ldiring.
+                                </p>
+
+                                <div class="space-y-3 text-sm">
+                                    <a href="tel:+998901234567" class="flex items-center space-x-3 p-3 rounded-2xl bg-eco-700/60 hover:bg-eco-700 transition-colors">
+                                        <div class="w-9 h-9 rounded-xl bg-eco-600 flex items-center justify-center shrink-0">
+                                            <i class="fa-solid fa-phone text-eco-200"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-[11px] text-eco-200">Ishonch telefoni</div>
+                                            <div class="font-bold">+998 (90) 123-45-67</div>
+                                        </div>
+                                    </a>
+
+                                    <a href="https://t.me/ecoloyiha_uz" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 p-3 rounded-2xl bg-eco-700/60 hover:bg-eco-700 transition-colors">
+                                        <div class="w-9 h-9 rounded-xl bg-sky-500 flex items-center justify-center shrink-0">
+                                            <i class="fa-brands fa-telegram text-white"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-[11px] text-eco-200">Telegram bot va kanal</div>
+                                            <div class="font-bold">@ecoloyiha_uz</div>
+                                        </div>
+                                    </a>
+
+                                    <button type="button" data-point="yaypan-markaz" class="point-detail-trigger w-full text-left flex items-center space-x-3 p-3 rounded-2xl bg-eco-700/60 hover:bg-eco-700 transition-colors">
+                                        <div class="w-9 h-9 rounded-xl bg-amber-500 flex items-center justify-center shrink-0">
+                                            <i class="fa-solid fa-location-dot text-white"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-[11px] text-eco-200">Bosh ofis manzili</div>
+                                            <div class="font-bold">Yaypan sh., Turkiston ko‘chasi, 18</div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 pt-6 border-t border-eco-700">
+                                <p class="text-xs text-eco-200 italic">
+                                    "Har bir saralangan plastik idish — kelajak avlodga qoldirilgan toza tabiatdir."
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- O'ng ustun: Ariza formasi -->
+                        <div class="lg:col-span-7 p-8 sm:p-10">
+                            <form id="eco-form" class="space-y-4">
+                                <div>
+                                    <label for="user-name" class="block text-sm font-semibold text-slate-700 mb-1.5">Ism va familiyangiz *</label>
+                                    <input type="text" id="user-name" required placeholder="Masalan: Sardor Karimov" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-eco-500 focus:ring-2 focus:ring-eco-200 outline-none text-sm transition-all">
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="user-phone" class="block text-sm font-semibold text-slate-700 mb-1.5">Telefon raqamingiz *</label>
+                                        <input type="tel" id="user-phone" required placeholder="+998 90 000 00 00" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-eco-500 focus:ring-2 focus:ring-eco-200 outline-none text-sm transition-all">
+                                    </div>
+                                    <div>
+                                        <label for="request-type" class="block text-sm font-semibold text-slate-700 mb-1.5">Murojaat maqsadi *</label>
+                                        <select id="request-type" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-eco-500 focus:ring-2 focus:ring-eco-200 outline-none text-sm bg-white transition-all">
+                                            <option value="ecobox">Mahallaga Eco-boks o‘rnatish</option>
+                                            <option value="yashilball">"Yashil ball" kartasini ochish</option>
+                                            <option value="maktab">Maktabda eco-aksiya o‘tkazish</option>
+                                            <option value="volontyor">Volontyor bo‘lib qo‘shilish</option>
+                                            <option value="hamkor">Tadbirkor / Investor hamkorligi</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="user-address" class="block text-sm font-semibold text-slate-700 mb-1.5">Mahalla / Tashkilot manzili</label>
+                                    <input type="text" id="user-address" placeholder="Tuman, MFY nomi yoki maktab raqami" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-eco-500 focus:ring-2 focus:ring-eco-200 outline-none text-sm transition-all">
+                                </div>
+
+                                <div>
+                                    <label for="user-message" class="block text-sm font-semibold text-slate-700 mb-1.5">Qo‘shimcha izoh</label>
+                                    <textarea id="user-message" rows="3" placeholder="Taklif yoki savollaringizni yozib qoldiring..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-eco-500 focus:ring-2 focus:ring-eco-200 outline-none text-sm transition-all"></textarea>
+                                </div>
+
+                                <button type="submit" class="w-full py-4 px-6 rounded-xl bg-eco-600 hover:bg-eco-700 text-white font-bold text-base shadow-lg shadow-eco-600/25 transition-all flex items-center justify-center">
+                                    <i class="fa-solid fa-paper-plane mr-2"></i> Arizani yuborish
+                                </button>
+                            </form>
+
+                            <!-- Tasdiqlash cheki -->
+                            <div id="form-success" class="hidden text-center py-6">
+                                <div class="w-16 h-16 rounded-full bg-eco-100 text-eco-600 flex items-center justify-center text-3xl mx-auto mb-4">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-slate-900 mb-2">Arizangiz qabul qilindi!</h3>
+                                <div class="inline-block px-4 py-1.5 rounded-full bg-eco-50 border border-eco-200 text-xs font-mono font-bold text-eco-800 mb-3" id="order-receipt-id">
+                                    Ariza raqami: #ECO-4921
+                                </div>
+                                <p class="text-sm text-slate-600 mb-6 max-w-md mx-auto" id="success-details">
+                                    Rahmat! Mutaxassislarimiz tez orada siz bilan bog‘lanib, keyingi qadamlarni tushuntirib berishadi.
+                                </p>
+                                <div class="flex flex-wrap justify-center gap-3">
+                                    <button type="button" id="reset-form-btn" class="px-6 py-2.5 rounded-xl bg-eco-600 hover:bg-eco-700 text-white font-semibold text-sm transition-colors">
+                                        Yangi ariza yuborish
+                                    </button>
+                                    <button type="button" data-page="home" class="nav-trigger px-6 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm transition-colors">
+                                        Bosh sahifaga qaytish
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== IXCHAM FOOTER ==================== -->
+    <footer class="bg-slate-900 text-slate-300 py-8 mt-auto border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <button type="button" data-page="home" class="nav-trigger flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-xl bg-eco-600 flex items-center justify-center text-white">
+                        <i class="fa-solid fa-leaf text-base"></i>
+                    </div>
+                    <span class="text-lg font-extrabold text-white">ECO<span class="text-eco-400">LOYIHA</span></span>
+                </button>
+
+                <div class="flex flex-wrap justify-center gap-5 text-xs font-medium text-slate-400">
+                    <button type="button" data-page="home" class="nav-trigger hover:text-eco-400 transition-colors">Bosh sahifa</button>
+                    <button type="button" data-page="directions" class="nav-trigger hover:text-eco-400 transition-colors">Yo‘nalishlar</button>
+                    <button type="button" data-page="calculator" class="nav-trigger hover:text-eco-400 transition-colors">Yashil Ball</button>
+                    <button type="button" data-page="points" class="nav-trigger hover:text-eco-400 transition-colors">Qabul punktlari</button>
+                    <button type="button" data-page="volunteers" class="nav-trigger hover:text-eco-400 transition-colors">Volontyorlar</button>
+                    <button type="button" data-page="contact" class="nav-trigger hover:text-eco-400 transition-colors">Bog‘lanish</button>
+                </div>
+
+                <p class="text-xs text-slate-500">&copy; 2026 Eco-Loyiha. Yaypan, Farg‘ona viloyati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== INTERAKTIV JAVASCRIPT ==================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Sahifalar (Tablar) o'rtasida almashish tizimi
+            const pageViews = document.querySelectorAll('.page-view');
+            const navTriggers = document.querySelectorAll('.nav-trigger');
+            const desktopNavBtns = document.querySelectorAll('.nav-btn');
+            const mobileNavBtns = document.querySelectorAll('.mobile-nav-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+            const requestTypeSelect = document.getElementById('request-type');
+            const topSecBtns = document.querySelectorAll('.top-sec-btn');
+            const subtabBtns = document.querySelectorAll('.subtab-btn');
+            const subtabContents = document.querySelectorAll('.subtab-content');
+
+            // Asosiy menyu bilan bog'liq sahifalar xaritasi (ichki detail sahifalar uchun)
+            const parentNavMap = {
+                'direction-detail': 'directions',
+                'reward-redeem': 'calculator',
+                'point-detail': 'points'
+            };
+
+            function activateSubtab(targetSub) {
+                if (!targetSub) return;
+                subtabBtns.forEach(b => {
+                    const isMatch = b.getAttribute('data-subtab') === targetSub;
+                    b.classList.toggle('active', isMatch);
+                    b.classList.toggle('bg-eco-600', isMatch);
+                    b.classList.toggle('text-white', isMatch);
+                    b.classList.toggle('font-bold', isMatch);
+                    b.classList.toggle('text-slate-600', !isMatch);
+                    b.classList.toggle('font-semibold', !isMatch);
+                });
+
+                subtabContents.forEach(content => {
+                    content.classList.toggle('hidden', content.id !== targetSub);
+                });
+            }
+
+            function syncTopSectionsBar(topKey, pageId, subtabId) {
+                const resolvedKey = topKey || (
+                    pageId === 'directions' && (subtabId === 'tab-stages' || subtabId === 'tab-guide')
+                        ? 'stages'
+                        : (parentNavMap[pageId] || pageId)
+                );
+
+                topSecBtns.forEach(btn => {
+                    const isActive = btn.getAttribute('data-top-key') === resolvedKey;
+                    btn.classList.toggle('active', isActive);
+                    btn.classList.toggle('bg-eco-600', isActive);
+                    btn.classList.toggle('text-white', isActive);
+                    btn.classList.toggle('font-bold', isActive);
+                    btn.classList.toggle('shadow-sm', isActive);
+
+                    btn.classList.toggle('bg-white', !isActive);
+                    btn.classList.toggle('text-slate-700', !isActive);
+                    btn.classList.toggle('font-semibold', !isActive);
+                    btn.classList.toggle('border', !isActive);
+                    btn.classList.toggle('border-eco-200/80', !isActive);
+
+                    if (isActive) {
+                        btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+                    }
+                });
+            }
+
+            function switchPage(pageId, presetValue = null, options = {}) {
+                const { subtabTarget = null, topKey = null } = options;
+
+                pageViews.forEach(view => view.classList.remove('active'));
+                const targetPage = document.getElementById(`page-${pageId}`);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                }
+
+                let activeSubtab = subtabTarget;
+                if (pageId === 'directions') {
+                    if (!activeSubtab) {
+                        const currentActiveSub = document.querySelector('.subtab-btn.active');
+                        activeSubtab = currentActiveSub ? currentActiveSub.getAttribute('data-subtab') : 'tab-4dir';
+                    }
+                    activateSubtab(activeSubtab);
+                }
+
+                const activeNavKey = parentNavMap[pageId] || pageId;
+
+                // Desktop menyu aktiv holatini yangilash
+                desktopNavBtns.forEach(btn => {
+                    if (btn.getAttribute('data-page') === activeNavKey) {
+                        btn.classList.add('active', 'bg-white', 'text-eco-700', 'shadow-sm', 'font-semibold');
+                        btn.classList.remove('text-slate-600', 'font-medium');
+                    } else {
+                        btn.classList.remove('active', 'bg-white', 'text-eco-700', 'shadow-sm', 'font-semibold');
+                        btn.classList.add('text-slate-600', 'font-medium');
+                    }
+                });
+
+                // Mobil menyu aktiv holatini yangilash
+                mobileNavBtns.forEach(btn => {
+                    if (btn.getAttribute('data-page') === activeNavKey) {
+                        btn.classList.add('bg-eco-50', 'text-eco-700', 'font-semibold');
+                        btn.classList.remove('text-slate-700', 'font-medium');
+                    } else {
+                        btn.classList.remove('bg-eco-50', 'text-eco-700', 'font-semibold');
+                        btn.classList.add('text-slate-700', 'font-medium');
+                    }
+                });
+
+                // Tepagi bo'limlar qatori aktiv holatini sinxronlash
+                syncTopSectionsBar(topKey, pageId, activeSubtab);
+
+                // Agar bog'lanish formasiga maqsad uzatilgan bo'lsa
+                if (pageId === 'contact' && presetValue && requestTypeSelect) {
+                    requestTypeSelect.value = presetValue;
+                }
+
+                // Mobil menyuni yopish
+                mobileMenu.classList.add('hidden');
+                mobileMenuIcon.classList.remove('fa-xmark');
+                mobileMenuIcon.classList.add('fa-bars');
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            navTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    const target = trigger.getAttribute('data-page');
+                    const preset = trigger.getAttribute('data-preset');
+                    const subtabTarget = trigger.getAttribute('data-subtab-target');
+                    const topKey = trigger.getAttribute('data-top-key');
+                    if (target) {
+                        switchPage(target, preset, { subtabTarget, topKey });
+                    }
+                });
+            });
+
+            // Mobil menyu tugmasi
+            mobileMenuBtn.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.contains('hidden');
+                mobileMenu.classList.toggle('hidden');
+                mobileMenuIcon.classList.toggle('fa-bars', !isHidden);
+                mobileMenuIcon.classList.toggle('fa-xmark', isHidden);
+            });
+
+            // 2. "Yo'nalishlar" sahifasidagi ichki sub-tablar
+            subtabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const targetSub = btn.getAttribute('data-subtab');
+                    activateSubtab(targetSub);
+                    syncTopSectionsBar(null, 'directions', targetSub);
+                });
+            });
+
+            // 2B. Yo'nalish tafsilotlari sahifasi ma'lumotlari
+            const directionData = {
+                ecobox: {
+                    badge: '01-Yo‘nalish • Infratuzilma',
+                    title: 'Eco-bokslar tizimi',
+                    subtitle: 'Ko‘p qavatli uylar, maktablar va bozorlarda chiqindilarni 4 xil toifada alohida yig‘ish tizimi.',
+                    metrics: [
+                        { label: 'O‘rnatilgan qutilar', value: '340+ dona' },
+                        { label: 'Saralash samaradorligi', value: '65–70%' },
+                        { label: 'Qamrab olingan MFY', value: '28 ta mahalla' }
+                    ],
+                    body: 'Eco-bokslar tizimi chiqindilarning poligonlarga aralash holda chiqib ketishini oldini oladi. Har bir boks QR-kod bilan jihozlangan bo‘lib, aholi va o‘quvchilar chiqindi topshirganda o‘z hisoblariga tezkor "Yashil ball" yig‘ishlari mumkin.',
+                    list: [
+                        'Sariq (plastik/metall), Ko‘k (qog‘oz), Yashil (shisha) va Jigarrang (organik) konteynerlarni o‘rnatish;',
+                        'Maxsus grafik asosida to‘lgan bokslarni chiqindi tashish texnikalari orqali olib ketish;',
+                        'Maktab va mahallalarda muntazam tushuntirish va ekologik savodxonlik darslari.'
+                    ],
+                    ctaText: 'Mahallaga Eco-boks buyurtma qilish',
+                    ctaPreset: 'ecobox'
+                },
+                recycling: {
+                    badge: '02-Yo‘nalish • Sanoat va Ishlab chiqarish',
+                    title: 'Qayta ishlash sexi',
+                    subtitle: 'Yig‘ilgan ikkilamchi xomashyoni saralash, yuvish, maydalash (PET fleks) va presslash majmuasi.',
+                    metrics: [
+                        { label: 'Oylik quvvat', value: '25 tonna' },
+                        { label: 'Yaratilgan ish o‘rni', value: '18 ta doimiy' },
+                        { label: 'Qayta ishlash darajasi', value: '95% xomashyo' }
+                    ],
+                    body: 'Qabul punktlaridan keltirilgan plastik idishlar ranglari bo‘yicha ajratiladi, yorliqlardan tozalanadi va maydalagich (drobilka) uskunasida yuqori sifatli PET fleksga aylantiriladi. Qog‘oz va karton esa gidravlik presslarda zichlanib zavodlarga yuboriladi.',
+                    list: [
+                        'PET idishlardan toza fleks va granulalar ishlab chiqarish;',
+                        'Makulatura va kartonni 200 kg li toylarga presslash;',
+                        'Keyingi bosqichda polimer-qum trotuar plitkalari va plastik quvurlar ishlab chiqarish.'
+                    ],
+                    ctaText: 'Xomashyo yetkazib berish bo‘yicha hamkorlik',
+                    ctaPreset: 'hamkor'
+                },
+                compost: {
+                    badge: '03-Yo‘nalish • Qishloq xo‘jaligi',
+                    title: 'Organik kompost va Biogumus',
+                    subtitle: 'Oziq-ovqat qoldiqlari va bog‘ chiqindilaridan tabiiy, ekologik toza o‘g‘it ishlab chiqarish.',
+                    metrics: [
+                        { label: 'Oylik biogumus', value: '12 tonna' },
+                        { label: 'Hosildorlik o‘sishi', value: '+35% gacha' },
+                        { label: 'Kimyoviy qo‘shimcha', value: '0% (Tabiiy)' }
+                    ],
+                    body: 'Maishiy chiqindilarning qariyb 45 foizini organik qoldiqlar tashkil etadi. Biz ularni maxsus kompost chuqurlarida Kaliforniya qizil chuvalchanglari yordamida qayta ishlab, Farg‘ona vodiysi issiqxonalari va bog‘bonlari uchun eng sifatli biogumus tayyorlaymiz.',
+                    list: [
+                        'Bozorlar va umumiy ovqatlanish maskanlaridan organik chiqindilarni alohida yig‘ish;',
+                        'Tabiiy fermentatsiya va vermikompostlash texnologiyasi asosida biogumus olish;',
+                        'Yashil ball to‘plagan aholiga biogumus o‘g‘itini bonus sifatida taqdim etish.'
+                    ],
+                    ctaText: 'Biogumus buyurtma qilish / Hamkorlik',
+                    ctaPreset: 'hamkor'
+                },
+                greenpoints: {
+                    badge: '04-Yo‘nalish • Motivatsiya tizimi',
+                    title: 'Yashil ball dasturi',
+                    subtitle: 'Chiqindilarni saralagan har bir fuqaro uchun raqamli bonus va rag‘batlantirish ekotizimi.',
+                    metrics: [
+                        { label: 'Faol foydalanuvchilar', value: '4 800+ kishi' },
+                        { label: '1 kg plastik qiymati', value: '50 ball (2 500 so‘m)' },
+                        { label: 'Hamkor do‘konlar', value: '35+ savdo nuqtasi' }
+                    ],
+                    body: '"Yashil ball" dasturi ekologiyani asrashni har bir oila uchun foydali odatga aylantiradi. Topshirilgan har bir kilogramm plastik, qog‘oz, shisha yoki metall uchun maxsus kartangizga ball yoziladi va ularni oziq-ovqat vaucherlari, transport bonusi yoki ko‘chatlarga almashtirish mumkin.',
+                    list: [
+                        'Har bir qabul punktida tezkor elektron tarozi va ball hisoblash terminali;',
+                        'Maktab sinflari o‘rtasida "Eng yashil sinf" oylik sovrinli musobaqalari;',
+                        'To‘plangan ballarni hamkor supermarketlar va jamoat transportida ishlatish imkoniyati.'
+                    ],
+                    ctaText: 'Yashil Ball kartasini ochish',
+                    ctaPreset: 'yashilball'
+                }
+            };
+
+            document.querySelectorAll('.dir-trigger').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const key = btn.getAttribute('data-dir');
+                    const data = directionData[key];
+                    if (!data) return;
+
+                    document.getElementById('dir-detail-badge').textContent = data.badge;
+                    document.getElementById('dir-detail-title').textContent = data.title;
+                    document.getElementById('dir-detail-subtitle').textContent = data.subtitle;
+                    document.getElementById('dir-detail-body').textContent = data.body;
+
+                    const metricsEl = document.getElementById('dir-detail-metrics');
+                    metricsEl.innerHTML = data.metrics.map(m => `
+                        <div class="p-4 rounded-2xl bg-eco-50 border border-eco-100 text-center">
+                            <div class="text-xs text-slate-500 mb-1">${m.label}</div>
+                            <div class="text-xl font-extrabold text-eco-700">${m.value}</div>
+                        </div>
+                    `).join('');
+
+                    const listEl = document.getElementById('dir-detail-list');
+                    listEl.innerHTML = data.list.map(item => `
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-eco-600 mt-1 mr-2.5 shrink-0"></i>
+                            <span>${item}</span>
+                        </li>
+                    `).join('');
+
+                    const primaryCta = document.getElementById('dir-detail-primary-cta');
+                    primaryCta.textContent = data.ctaText;
+                    primaryCta.setAttribute('data-preset', data.ctaPreset);
+
+                    switchPage('direction-detail');
+                });
+            });
+
+            // 3. "Yashil Ball" Interaktiv Kalkulyatori
+            const plasticRange = document.getElementById('plastic-range');
+            const paperRange = document.getElementById('paper-range');
+            const glassRange = document.getElementById('glass-range');
+            const metalRange = document.getElementById('metal-range');
+
+            const plasticVal = document.getElementById('plastic-val');
+            const paperVal = document.getElementById('paper-val');
+            const glassVal = document.getElementById('glass-val');
+            const metalVal = document.getElementById('metal-val');
+
+            const totalPointsEl = document.getElementById('total-points');
+            const co2SavedEl = document.getElementById('co2-saved');
+            const treesSavedEl = document.getElementById('trees-saved');
+            const bonusSumEl = document.getElementById('bonus-sum');
+            const ecoRankEl = document.getElementById('eco-rank');
+            const rewardSuggestionEl = document.getElementById('reward-suggestion');
+
+            let currentCalculatedPoints = 730;
+
+            function updateCalculator() {
+                const plastic = parseInt(plasticRange.value, 10);
+                const paper = parseInt(paperRange.value, 10);
+                const glass = parseInt(glassRange.value, 10);
+                const metal = parseInt(metalRange.value, 10);
+
+                plasticVal.textContent = plastic;
+                paperVal.textContent = paper;
+                glassVal.textContent = glass;
+                metalVal.textContent = metal;
+
+                const points = (plastic * 50) + (paper * 30) + (glass * 20) + (metal * 80);
+                currentCalculatedPoints = points;
+                const co2 = ((plastic * 2.5) + (paper * 1.1) + (glass * 0.3) + (metal * 4.5)).toFixed(1);
+                const trees = (paper * 0.017 + plastic * 0.01).toFixed(2);
+                const sum = points * 50;
+
+                totalPointsEl.textContent = points.toLocaleString('uz-UZ');
+                co2SavedEl.textContent = co2;
+                treesSavedEl.textContent = trees;
+                bonusSumEl.textContent = sum.toLocaleString('uz-UZ');
+
+                if (points === 0) {
+                    ecoRankEl.textContent = 'Boshlovchi';
+                    rewardSuggestionEl.textContent = 'Slayderlarni suring va chiqindilarni saralash orqali qancha bonus olishingizni ko‘ring!';
+                } else if (points < 500) {
+                    ecoRankEl.textContent = 'Yashil Do‘st';
+                    rewardSuggestionEl.textContent = 'Ekologik sumka (300 ball) yoki 1 qop tabiiy biogumus o‘g‘itini olishingiz mumkin.';
+                } else if (points < 1500) {
+                    ecoRankEl.textContent = 'Eco-Faol';
+                    rewardSuggestionEl.textContent = 'Ko‘chat sovg‘asi (600 ball), biogumus o‘g‘iti yoki jamoat transporti bonusiga almashtiring!';
+                } else {
+                    ecoRankEl.textContent = 'Tabiat Qahramoni';
+                    rewardSuggestionEl.textContent = 'Istalgan sovg‘ani tanlang va maxsus Eco-Sertifikatga ega bo‘ling!';
+                }
+            }
+
+            [plasticRange, paperRange, glassRange, metalRange].forEach(slider => {
+                slider.addEventListener('input', updateCalculator);
+            });
+            updateCalculator();
+
+            // 3B. Sovg'ani rasmiylashtirish (Redeem) sahifasi
+            const rewardsData = {
+                bag: {
+                    title: 'Ekologik sumka (Eco-bag)',
+                    cost: 300,
+                    desc: 'Polietilen paketlar o‘rnini bosuvchi 100% qayta ishlangan mustahkam paxta va polimer tolali xarid sumkasi.'
+                },
+                biogumus: {
+                    title: 'Biogumus o‘g‘iti (10 kg qop)',
+                    cost: 450,
+                    desc: 'Organik chiqindilardan tayyorlangan, xona gullari, tomorqa va issiqxona ekinlari uchun 100% tabiiy o‘g‘it.'
+                },
+                sapling: {
+                    title: 'Ko‘chat sovg‘asi (2 tup ko‘chat)',
+                    cost: 600,
+                    desc: 'Mahallangiz yoki hovlingizni ko‘kalamzorlashtirish uchun iqlimga moslashgan mevali va manzarali daraxt ko‘chatlari.'
+                },
+                transport: {
+                    title: 'Jamoat transporti bonusi (20 qatnov)',
+                    cost: 800,
+                    desc: 'Farg‘ona viloyati, Yaypan va Qo‘qon shahar ichidagi jamoat avtobuslarida 20 ta bepul qatnov uchun transport kartasi balansi.'
+                }
+            };
+
+            const redeemForm = document.getElementById('redeem-form');
+            const redeemSuccess = document.getElementById('redeem-success');
+
+            document.querySelectorAll('.reward-trigger').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const key = btn.getAttribute('data-reward');
+                    const r = rewardsData[key];
+                    if (!r) return;
+
+                    document.getElementById('redeem-title').textContent = r.title;
+                    document.getElementById('redeem-cost').textContent = `${r.cost} ball`;
+                    document.getElementById('redeem-desc').textContent = r.desc;
+                    document.getElementById('redeem-user-points').textContent = currentCalculatedPoints.toLocaleString('uz-UZ');
+
+                    const statusBadge = document.getElementById('redeem-status-badge');
+                    if (currentCalculatedPoints >= r.cost) {
+                        statusBadge.className = 'px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold';
+                        statusBadge.innerHTML = '<i class="fa-solid fa-check mr-1"></i> Ballaringiz yetarli!';
+                    } else {
+                        statusBadge.className = 'px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold';
+                        statusBadge.innerHTML = `<i class="fa-solid fa-circle-info mr-1"></i> Yana ${r.cost - currentCalculatedPoints} ball kerak`;
+                    }
+
+                    redeemForm.reset();
+                    redeemForm.classList.remove('hidden');
+                    redeemSuccess.classList.add('hidden');
+                    switchPage('reward-redeem');
+                });
+            });
+
+            redeemForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('redeem-name').value.trim();
+                const pickup = document.getElementById('redeem-pickup').value;
+                const title = document.getElementById('redeem-title').textContent;
+                const randomCode = 'ECO-' + Math.floor(1000 + Math.random() * 9000);
+
+                document.getElementById('redeem-receipt-text').textContent = `Hurmatli ${name}, "${title}" sovg‘asi uchun vaucher tayyorlandi. Uni "${pickup}" manzilidan olib ketishingiz mumkin.`;
+                document.getElementById('redeem-code').textContent = randomCode;
+
+                redeemForm.classList.add('hidden');
+                redeemSuccess.classList.remove('hidden');
+            });
+
+            // 4. Qabul punktlarini filtrlash
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const pointCards = document.querySelectorAll('.point-card');
+
+            function applyPointFilter(filterValue) {
+                filterBtns.forEach(b => {
+                    if (b.getAttribute('data-filter') === filterValue) {
+                        b.classList.remove('bg-white', 'border', 'border-slate-200', 'text-slate-700');
+                        b.classList.add('active', 'bg-eco-600', 'text-white');
+                    } else {
+                        b.classList.remove('active', 'bg-eco-600', 'text-white');
+                        b.classList.add('bg-white', 'border', 'border-slate-200', 'text-slate-700');
+                    }
+                });
+
+                pointCards.forEach(card => {
+                    const types = card.getAttribute('data-types');
+                    card.style.display = (filterValue === 'all' || types.includes(filterValue)) ? 'flex' : 'none';
+                });
+            }
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    applyPointFilter(btn.getAttribute('data-filter'));
+                });
+            });
+
+            // Saralash qoidalaridan to'g'ridan-to'g'ri filtrlangan punktlarga o'tish
+            document.querySelectorAll('.point-filter-nav').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const filterVal = btn.getAttribute('data-filter-preset');
+                    switchPage('points');
+                    applyPointFilter(filterVal);
+                });
+            });
+
+            // 4B. Punkt tafsilotlari sahifasi
+            const pointsDetailData = {
+                'yaypan-markaz': {
+                    name: 'Yaypan shahri Markaziy Eco-punkti',
+                    status: 'Ochiq • Har kuni 08:00–20:00',
+                    phone: '+998 (90) 123-45-67',
+                    address: 'O‘zbekiston tumani, Yaypan sh., Turkiston ko‘chasi, 18-uy',
+                    landmark: 'Tuman hokimiyati binosidan 300 metr janubda, markaziy xiyobon yonida',
+                    coords: 'GPS: 40.3758° N, 70.8156° E',
+                    mapUrl: 'https://maps.google.com/?q=40.3758,70.8156',
+                    materials: [
+                        'Plastik (PET idishlar, kanistrlar) — 50 ball/kg',
+                        'Qog‘oz va karton (makulatura) — 30 ball/kg',
+                        'Shisha idishlar va bankalar — 20 ball/kg',
+                        'Alyuminiy va rangli metall — 80 ball/kg'
+                    ],
+                    services: [
+                        'Elektron tarozi va tezkor "Yashil ball" terminal xizmati',
+                        'Yangi ishtirokchilarga bepul Eco-karta rasmiylashtirish',
+                        'Sovg‘a vaucherlari (Eco-sumka, biogumus) berish nuqtasi'
+                    ]
+                },
+                'yaypan-bozor': {
+                    name: 'Yaypan Dehqon bozori Eco-zonasi',
+                    status: 'Ochiq • Har kuni 07:00–19:00',
+                    phone: '+998 (91) 234-56-78',
+                    address: 'O‘zbekiston tumani, Yaypan sh., Markaziy dehqon bozori sharqiy darvozasi',
+                    landmark: 'Bozor avtoturargohi kirish qismida joylashgan yashil pavilon',
+                    coords: 'GPS: 40.3782° N, 70.8190° E',
+                    mapUrl: 'https://maps.google.com/?q=40.3782,70.8190',
+                    materials: [
+                        'Karton qutilar va bozor qadoqlari — 30 ball/kg',
+                        'Plastik idishlar va plyonkalar — 50 ball/kg',
+                        'Metall va tunuka idishlar — 80 ball/kg'
+                    ],
+                    services: [
+                        'Tadbirkorlar va do‘konlardan yirik hajmdagi kartonni qabul qilish',
+                        'Joyida naqd to‘lov yoki "Yashil ball" hisobiga o‘tkazish',
+                        'Meva-sabzavot qoldiqlarini kompost uchun alohida yig‘ish'
+                    ]
+                },
+                'yaypan-maktab': {
+                    name: '1-sonli IDUM "Eco-Maktab" punkti',
+                    status: 'Ochiq • Dushanba–Shanba 08:00–18:00',
+                    phone: '+998 (93) 345-67-89',
+                    address: 'O‘zbekiston tumani, Yoshlik MFY, 1-sonli IDUM hovlisi',
+                    landmark: 'Maktab sport maydonchasi yonidagi rangli Eco-bokslar majmuasi',
+                    coords: 'GPS: 40.3715° N, 70.8112° E',
+                    mapUrl: 'https://maps.google.com/?q=40.3715,70.8112',
+                    materials: [
+                        'Plastik suv idishlari (PET) — 50 ball/kg',
+                        'Daftar, kitob va ofis qog‘ozlari — 30 ball/kg'
+                    ],
+                    services: [
+                        'O‘quvchilar va sinflar o‘rtasida "Yashil ball" reytingi',
+                        'Har oyda eng faol sinfga maxsus sovg‘alar topshirish',
+                        'Yoshlik MFY aholisi uchun ham ochiq qabul nuqtasi'
+                    ]
+                },
+                'fargona-markaz': {
+                    name: 'Farg‘ona Qayta Ishlash Sexi va Markazi',
+                    status: '24/7 • Uzluksiz qabul',
+                    phone: '+998 (90) 987-65-43',
+                    address: 'Farg‘ona sh., Sanoat zonasi, 4-bino',
+                    landmark: 'Farg‘ona halqa yo‘li, Kimyogarlar shaharchasi chorrahasi',
+                    coords: 'GPS: 40.3894° N, 71.7843° E',
+                    mapUrl: 'https://maps.google.com/?q=40.3894,71.7843',
+                    materials: [
+                        'Barcha turdagi plastik (PET, HDPE, PP) — 50 ball/kg',
+                        'Qog‘oz, gazeta va karton — 30 ball/kg',
+                        'Shisha idishlar — 20 ball/kg',
+                        'Alyuminiy va rangli metallar — 80 ball/kg'
+                    ],
+                    services: [
+                        '50 kg dan ortiq xomashyoni maxsus transportda bepul olib ketish',
+                        'Qayta ishlangan PET fleks va biogumus ulgurji sotuvi',
+                        'Ekskursiya va o‘quv seminarlari o‘tkazish markazi'
+                    ]
+                },
+                'qoqon-xiyobon': {
+                    name: 'Qo‘qon sh. "Yashil Xiyobon" Eco-punkti',
+                    status: 'Ochiq • Har kuni 08:00–21:00',
+                    phone: '+998 (94) 456-78-90',
+                    address: 'Qo‘qon sh., Movarounnahr ko‘chasi, 42-uy',
+                    landmark: 'Markaziy istirohat bog‘i kirish darvozasi ro‘parasida',
+                    coords: 'GPS: 40.5286° N, 70.9425° E',
+                    mapUrl: 'https://maps.google.com/?q=40.5286,70.9425',
+                    materials: [
+                        'Qog‘oz va kitob-jurnallar — 30 ball/kg',
+                        'Shisha bankalar va butilkalar — 20 ball/kg'
+                    ],
+                    services: [
+                        'Tabiiy biogumus o‘g‘iti va ko‘chatlar sotuvi',
+                        'Yashil ball vaucherlarini sovg‘alarga almashtirish',
+                        'Dam olish kunlari volontyorlar uchrashuv nuqtasi'
+                    ]
+                }
+            };
+
+            document.querySelectorAll('.point-detail-trigger').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const key = btn.getAttribute('data-point');
+                    const pt = pointsDetailData[key];
+                    if (!pt) return;
+
+                    document.getElementById('pt-detail-name').textContent = pt.name;
+                    document.getElementById('pt-detail-status').textContent = pt.status;
+                    document.getElementById('pt-detail-phone').innerHTML = `<i class="fa-solid fa-phone mr-1"></i> ${pt.phone}`;
+                    document.getElementById('pt-detail-address').innerHTML = `<i class="fa-solid fa-location-dot mr-1.5 text-amber-400"></i> ${pt.address}`;
+                    document.getElementById('pt-detail-landmark').textContent = pt.landmark;
+                    document.getElementById('pt-detail-coords').textContent = pt.coords;
+                    document.getElementById('pt-detail-map-link').href = pt.mapUrl;
+
+                    document.getElementById('pt-detail-materials').innerHTML = pt.materials.map(m => `
+                        <li class="flex items-center"><i class="fa-solid fa-check text-eco-600 mr-2"></i> ${m}</li>
+                    `).join('');
+
+                    document.getElementById('pt-detail-services').innerHTML = pt.services.map(s => `
+                        <li class="flex items-center"><i class="fa-solid fa-star text-amber-500 mr-2"></i> ${s}</li>
+                    `).join('');
+
+                    switchPage('point-detail');
+                });
+            });
+
+            // 5. Volontyorlar sahifasi interaktivligi
+            const volForm = document.getElementById('volunteer-form');
+            const volSuccess = document.getElementById('vol-success');
+            const volEventSelect = document.getElementById('vol-event');
+
+            document.querySelectorAll('.event-join-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const eventName = btn.getAttribute('data-event');
+                    if (volEventSelect) {
+                        volEventSelect.value = eventName;
+                    }
+                    volForm.classList.remove('hidden');
+                    volSuccess.classList.add('hidden');
+                    document.getElementById('vol-name').focus();
+                });
+            });
+
+            volForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('vol-name').value.trim();
+                const eventVal = volEventSelect.value;
+                document.getElementById('vol-success-text').textContent = `Hurmatli ${name}, siz "${eventVal}" bo‘yicha volontyorlar ro‘yxatiga kiritildingiz. Koordinatorimiz tez orada siz bilan bog‘lanadi.`;
+                volForm.classList.add('hidden');
+                volSuccess.classList.remove('hidden');
+            });
+
+            document.getElementById('vol-reset-btn').addEventListener('click', () => {
+                volForm.reset();
+                volSuccess.classList.add('hidden');
+                volForm.classList.remove('hidden');
+            });
+
+            // 6. Ariza formasini yuborish
+            const ecoForm = document.getElementById('eco-form');
+            const formSuccess = document.getElementById('form-success');
+            const successDetails = document.getElementById('success-details');
+            const resetFormBtn = document.getElementById('reset-form-btn');
+
+            ecoForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('user-name').value.trim();
+                const typeSelect = document.getElementById('request-type');
+                const typeText = typeSelect.options[typeSelect.selectedIndex].text;
+                const receiptId = '#ECO-' + Math.floor(1000 + Math.random() * 9000);
+
+                document.getElementById('order-receipt-id').textContent = `Ariza raqami: ${receiptId}`;
+                successDetails.textContent = `Hurmatli ${name}, "${typeText}" bo‘yicha so‘rovingiz ro‘yxatga olindi. Mutaxassislarimiz 24 soat ichida siz bilan bog‘lanishadi.`;
+                
+                ecoForm.classList.add('hidden');
+                formSuccess.classList.remove('hidden');
+            });
+
+            resetFormBtn.addEventListener('click', () => {
+                ecoForm.reset();
+                formSuccess.classList.add('hidden');
+                ecoForm.classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
